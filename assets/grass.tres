@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dhjl7tuucybyj"]
+
+[ext_resource type="Texture2D" uid="uid://boqvl4w073gl0" path="res://assets/grass_block_top.png" id="1_ywq8p"]
+
+[resource]
+albedo_color = Color(0.392157, 0.741176, 0.254902, 1)
+albedo_texture = ExtResource("1_ywq8p")
+uv1_scale = Vector3(50, 50, 50)
+texture_filter = 0
