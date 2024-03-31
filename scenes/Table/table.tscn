@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://poq05hssxap0"]
+[gd_scene load_steps=30 format=3 uid="uid://poq05hssxap0"]
 
 [ext_resource type="Script" path="res://scenes/Table/table.gd" id="1_gl6xo"]
 [ext_resource type="PackedScene" uid="uid://bcp688sph47rl" path="res://scenes/Table/FlatLand/Tiny/tiny.tscn" id="2_7f51b"]
@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://ch2t0tumkro4v" path="res://scenes/Table/FlatLand/flat_land_material.tres" id="7_ndgbw"]
 [ext_resource type="PackedScene" uid="uid://bng8sm6xpefyl" path="res://scenes/Table/Buttons/hide_button.tscn" id="8_mb0g2"]
 [ext_resource type="Script" path="res://scenes/Table/3DObjects/triangle_3d.gd" id="10_avgx2"]
+[ext_resource type="PackedScene" uid="uid://driat2fkek0k4" path="res://scenes/Table/Buttons/disable_button.tscn" id="10_n0ncg"]
 [ext_resource type="PackedScene" uid="uid://djk85u1gops8n" path="res://scenes/Table/Buttons/reset_button.tscn" id="10_nrcww"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_843g4"]
@@ -43,7 +44,28 @@ albedo_color = Color(0.603922, 0.219608, 0.87451, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxkku"]
 albedo_color = Color(0.745098, 0.745098, 0.745098, 1)
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_x636q"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjbx6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxj7k"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pb0bm"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_sl8xm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5a8th"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_73k58"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5esk7"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_hp3d1"]
 
 [node name="Table" type="StaticBody3D"]
 script = ExtResource("1_gl6xo")
@@ -70,7 +92,7 @@ script = ExtResource("4_nr1c0")
 tiny = NodePath("../Tiny")
 
 [node name="Mesh" type="MeshInstance3D" parent="FlatLand"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0404522, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
 layers = 2
 mesh = SubResource("PlaneMesh_58rqn")
 surface_material_override/0 = ExtResource("7_ndgbw")
@@ -117,11 +139,45 @@ to_hide = NodePath("../../FlatLand/Mesh")
 material_show = SubResource("StandardMaterial3D_oxkku")
 material_hide = ExtResource("7_ndgbw")
 
+[node name="3DDisableButton" parent="Buttons" instance=ExtResource("10_n0ncg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211737, 0, 0.43)
+target_path = NodePath("/root/Reference3D")
+_name = &"show_3d"
+material_show = SubResource("StandardMaterial3D_fjbx6")
+material_hide = SubResource("StandardMaterial3D_pxj7k")
+lock = false
+
+[node name="2DDisableButton" parent="Buttons" instance=ExtResource("10_n0ncg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.111553, 0, 0.43)
+target_path = NodePath("/root/Reference3D")
+_name = &"show_2d"
+material_show = SubResource("StandardMaterial3D_fjbx6")
+material_hide = SubResource("StandardMaterial3D_pxj7k")
+lock = false
+
 [node name="3DObjects" type="Node3D" parent="."]
 
 [node name="Triangle3D" type="MeshInstance3D" parent="3DObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0647585, -0.223589)
-mesh = SubResource("ImmediateMesh_x636q")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0506616, -0.237553)
+layers = 6
+material_override = SubResource("StandardMaterial3D_pb0bm")
+mesh = SubResource("ImmediateMesh_sl8xm")
 script = ExtResource("10_avgx2")
 vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
-colors = [Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
+colors = [Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)]
+
+[node name="Triangle3D2" type="MeshInstance3D" parent="3DObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0506616, 0.311211)
+layers = 7
+material_override = SubResource("StandardMaterial3D_5a8th")
+mesh = SubResource("ImmediateMesh_73k58")
+script = ExtResource("10_avgx2")
+vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
+
+[node name="Triangle3D3" type="MeshInstance3D" parent="3DObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0506616, 0.132936)
+layers = 8
+material_override = SubResource("StandardMaterial3D_5esk7")
+mesh = SubResource("ImmediateMesh_hp3d1")
+script = ExtResource("10_avgx2")
+vertices = [Vector3(-0.05, 0, 0), Vector3(-0.05, 0, -0.05), Vector3(0.05, 0, 0)]

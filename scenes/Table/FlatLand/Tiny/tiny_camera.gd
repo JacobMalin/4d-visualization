@@ -16,7 +16,7 @@ func _start():
 func _process(_delta):
 	# Store plane eq
 	var global_normal = global_transform.basis.y
-	TinyPlane.plane = Plane(global_normal, global_normal.dot(global_position))
+	TinyPlane.plane = Plane(global_normal, global_position)
 
 	# Move camera
 	global_position = tiny.global_position + offset
