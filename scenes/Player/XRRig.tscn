@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://b4eci8600mqwv"]
+
+[ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_hbs25"]
+[ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_5hx4i"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="3_obqfv"]
+[ext_resource type="Script" path="res://scenes/Player/pointer.gd" id="4_0ni5g"]
+[ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="5_yrcfb"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="6_muorr"]
+[ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="7_yw536"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="8_14dth"]
+[ext_resource type="Script" path="res://scenes/Player/movement_controller.gd" id="9_sf2t3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6hbr6"]
+radius = 0.005
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_64kao"]
+radius = 0.2
+height = 1.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_imget"]
+radius = 0.2
+
+[node name="XRRig" type="XROrigin3D"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="LeftController" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="LeftController" instance=ExtResource("1_hbs25")]
+hand_material_override = ExtResource("2_5hx4i")
+
+[node name="MovementDirect" parent="LeftController" instance=ExtResource("3_obqfv")]
+strafe = true
+
+[node name="LeftPointer" type="Area3D" parent="LeftController" node_paths=PackedStringArray("hand_skeleton")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00100923, -0.0128307, 0.00340831)
+collision_layer = 131072
+collision_mask = 0
+script = ExtResource("4_0ni5g")
+hand_skeleton = NodePath("../LeftHand/Hand_low_L/Armature/Skeleton3D")
+bone_name = "Index_Tip_L"
+offset = Vector3(-0.03, -0.05, 0.15)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftController/LeftPointer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00381637, 0, -0.0022997)
+shape = SubResource("SphereShape3D_6hbr6")
+
+[node name="RightController" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
+tracker = &"right_hand"
+
+[node name="RightHand" parent="RightController" instance=ExtResource("5_yrcfb")]
+hand_material_override = ExtResource("2_5hx4i")
+
+[node name="MovementTurn" parent="RightController" instance=ExtResource("6_muorr")]
+turn_mode = 2
+smooth_turn_speed = 1.5
+
+[node name="MovementJump" parent="RightController" instance=ExtResource("7_yw536")]
+jump_button_action = "ax_button"
+
+[node name="RightPointer" type="Area3D" parent="RightController" node_paths=PackedStringArray("hand_skeleton")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00100923, -0.0128307, 0.00340831)
+collision_layer = 131072
+collision_mask = 131072
+script = ExtResource("4_0ni5g")
+hand_skeleton = NodePath("../RightHand/Hand_low_R/Armature/Skeleton3D")
+bone_name = "Index_Tip_R"
+offset = Vector3(0.03, -0.05, 0.15)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightController/RightPointer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00381637, 0, -0.0022997)
+shape = SubResource("SphereShape3D_6hbr6")
+
+[node name="PlayerBody" parent="." instance=ExtResource("8_14dth")]
+collision_mask = 255
+
+[node name="_CollisionShape3D_21078" type="CollisionShape3D" parent="PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_64kao")
+
+[node name="_ShapeCast3D_21079" type="ShapeCast3D" parent="PlayerBody"]
+enabled = false
+shape = SubResource("SphereShape3D_imget")
+margin = 0.01
+max_results = 1
+collision_mask = 255
+
+[node name="MovementController" type="Node3D" parent="." node_paths=PackedStringArray("direct", "turn", "jump")]
+script = ExtResource("9_sf2t3")
+direct = NodePath("../LeftController/MovementDirect")
+turn = NodePath("../RightController/MovementTurn")
+jump = NodePath("../RightController/MovementJump")

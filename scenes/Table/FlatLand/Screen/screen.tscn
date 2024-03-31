@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://blt1qnwlwunli"]
+
+[ext_resource type="Script" path="res://scenes/Table/FlatLand/Screen/screen.gd" id="1_5vjmi"]
+[ext_resource type="Material" uid="uid://c2e54kgww54wo" path="res://scenes/Table/FlatLand/Screen/tiny_viewport_material.tres" id="2_bqwa1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bjhvs"]
+resource_local_to_scene = true
+material = ExtResource("2_bqwa1")
+size = Vector2(0.8, 0.5)
+orientation = 2
+
+[node name="Screen" type="Node3D"]
+script = ExtResource("1_5vjmi")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("PlaneMesh_bjhvs")

@@ -1,0 +1,127 @@
+[gd_scene load_steps=22 format=3 uid="uid://poq05hssxap0"]
+
+[ext_resource type="Script" path="res://scenes/Table/table.gd" id="1_gl6xo"]
+[ext_resource type="PackedScene" uid="uid://bcp688sph47rl" path="res://scenes/Table/FlatLand/Tiny/tiny.tscn" id="2_7f51b"]
+[ext_resource type="PackedScene" uid="uid://blt1qnwlwunli" path="res://scenes/Table/FlatLand/Screen/screen.tscn" id="3_1tjlf"]
+[ext_resource type="Script" path="res://scenes/Table/FlatLand/flat_land.gd" id="4_nr1c0"]
+[ext_resource type="Material" uid="uid://b2vfads0frtmh" path="res://scenes/Table/FlatLand/frustrum_material.tres" id="5_thvm2"]
+[ext_resource type="PackedScene" uid="uid://dwu36x1b0dkob" path="res://scenes/Table/Buttons/movement_button.tscn" id="6_age6n"]
+[ext_resource type="Material" uid="uid://ch2t0tumkro4v" path="res://scenes/Table/FlatLand/flat_land_material.tres" id="7_ndgbw"]
+[ext_resource type="PackedScene" uid="uid://bng8sm6xpefyl" path="res://scenes/Table/Buttons/hide_button.tscn" id="8_mb0g2"]
+[ext_resource type="Script" path="res://scenes/Table/3DObjects/triangle_3d.gd" id="10_avgx2"]
+[ext_resource type="PackedScene" uid="uid://djk85u1gops8n" path="res://scenes/Table/Buttons/reset_button.tscn" id="10_nrcww"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_843g4"]
+albedo_color = Color(0.384314, 0.235294, 0.133333, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vvta2"]
+material = SubResource("StandardMaterial3D_843g4")
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_grng5"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_58rqn"]
+size = Vector2(1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ogpvv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxpej"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.109804, 0.313726, 0.690196, 0.105882)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7n0jq"]
+size = Vector3(0.02, 0.02, 0.02)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ycw5d"]
+size = Vector3(0.02, 0.02, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukjea"]
+albedo_color = Color(0.603922, 0.219608, 0.87451, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxkku"]
+albedo_color = Color(0.745098, 0.745098, 0.745098, 1)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_x636q"]
+
+[node name="Table" type="StaticBody3D"]
+script = ExtResource("1_gl6xo")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("BoxMesh_vvta2")
+skeleton = NodePath("../..")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_grng5")
+
+[node name="Tiny" parent="." node_paths=PackedStringArray("table", "bounds") instance=ExtResource("2_7f51b")]
+table = NodePath("..")
+bounds = NodePath("../FlatLand/Bounds")
+
+[node name="Screen" parent="." node_paths=PackedStringArray("tiny") instance=ExtResource("3_1tjlf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1)
+tiny = NodePath("../Tiny")
+
+[node name="FlatLand" type="Node3D" parent="." node_paths=PackedStringArray("tiny")]
+script = ExtResource("4_nr1c0")
+tiny = NodePath("../Tiny")
+
+[node name="Mesh" type="MeshInstance3D" parent="FlatLand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0404522, 0)
+layers = 2
+mesh = SubResource("PlaneMesh_58rqn")
+surface_material_override/0 = ExtResource("7_ndgbw")
+
+[node name="Bounds" type="MeshInstance3D" parent="FlatLand"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.25, 0)
+visible = false
+mesh = SubResource("BoxMesh_ogpvv")
+surface_material_override/0 = SubResource("StandardMaterial3D_dxpej")
+
+[node name="Box" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, -0.089)
+collision_layer = 256
+collision_mask = 0
+
+[node name="Mesh" type="MeshInstance3D" parent="Box"]
+mesh = SubResource("BoxMesh_7n0jq")
+skeleton = NodePath("../..")
+
+[node name="Collision" type="CollisionShape3D" parent="Box"]
+shape = SubResource("BoxShape3D_ycw5d")
+
+[node name="Buttons" type="Node3D" parent="."]
+
+[node name="MovementButton" parent="Buttons" node_paths=PackedStringArray("table", "tiny", "reset_button") instance=ExtResource("6_age6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43, 0, 0.43)
+table = NodePath("../..")
+tiny = NodePath("../../Tiny")
+reset_button = NodePath("../ResetButton")
+
+[node name="ResetButton" parent="Buttons" node_paths=PackedStringArray("tiny") instance=ExtResource("10_nrcww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43, 0, 0.32)
+tiny = NodePath("../../Tiny")
+
+[node name="FrustrumHideButton" parent="Buttons" node_paths=PackedStringArray("to_hide") instance=ExtResource("8_mb0g2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0, 0.43)
+to_hide = NodePath("../../Tiny/SubViewport/TinyCamera/Frustrum")
+material_show = SubResource("StandardMaterial3D_ukjea")
+material_hide = ExtResource("5_thvm2")
+
+[node name="FlatLandHideButton2" parent="Buttons" node_paths=PackedStringArray("to_hide") instance=ExtResource("8_mb0g2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43, 0, 0.43)
+to_hide = NodePath("../../FlatLand/Mesh")
+material_show = SubResource("StandardMaterial3D_oxkku")
+material_hide = ExtResource("7_ndgbw")
+
+[node name="3DObjects" type="Node3D" parent="."]
+
+[node name="Triangle3D" type="MeshInstance3D" parent="3DObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0647585, -0.223589)
+mesh = SubResource("ImmediateMesh_x636q")
+script = ExtResource("10_avgx2")
+vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
+colors = [Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1)]

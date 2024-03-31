@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://bcp688sph47rl"]
+
+[ext_resource type="Script" path="res://scenes/Table/FlatLand/Tiny/tiny.gd" id="1_plvpf"]
+[ext_resource type="Script" path="res://scenes/Table/FlatLand/Tiny/tiny_camera.gd" id="2_iaicc"]
+[ext_resource type="Script" path="res://scenes/Table/FlatLand/frustrum.gd" id="3_mqjlq"]
+[ext_resource type="Material" uid="uid://b2vfads0frtmh" path="res://scenes/Table/FlatLand/frustrum_material.tres" id="4_siy8q"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xn7i6"]
+material = ExtResource("4_siy8q")
+top_radius = 0.001
+bottom_radius = 0.001
+height = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4r88b"]
+material = ExtResource("4_siy8q")
+top_radius = 0.001
+bottom_radius = 0.001
+height = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0ybpo"]
+material = ExtResource("4_siy8q")
+top_radius = 0.001
+bottom_radius = 0.001
+height = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6yrjs"]
+material = ExtResource("4_siy8q")
+top_radius = 0.001
+bottom_radius = 0.001
+height = 0.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0xm4m"]
+radius = 0.01
+height = 0.05
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_esukh"]
+radius = 0.01
+height = 0.05
+
+[node name="Tiny" type="CharacterBody3D"]
+collision_layer = 256
+collision_mask = 257
+script = ExtResource("1_plvpf")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(2560, 1600)
+
+[node name="TinyCamera" type="Camera3D" parent="SubViewport" node_paths=PackedStringArray("tiny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+cull_mask = 1048573
+near = 0.001
+script = ExtResource("2_iaicc")
+tiny = NodePath("../..")
+
+[node name="Frustrum" type="Node3D" parent="SubViewport/TinyCamera" node_paths=PackedStringArray("tiny")]
+script = ExtResource("3_mqjlq")
+tiny = NodePath("../../..")
+
+[node name="Arm" type="MeshInstance3D" parent="SubViewport/TinyCamera/Frustrum"]
+transform = Transform3D(0.632029, 0.697107, 0.338497, -3.81864e-08, -0.436802, 0.899557, 0.774944, -0.568547, -0.276071, 0.174277, -0.1092, -0.142137)
+layers = 2
+mesh = SubResource("CylinderMesh_xn7i6")
+
+[node name="Arm2" type="MeshInstance3D" parent="SubViewport/TinyCamera/Frustrum"]
+transform = Transform3D(0.632029, -0.697107, -0.338497, -3.81864e-08, -0.436802, 0.899556, -0.774944, -0.568547, -0.276071, -0.174277, -0.1092, -0.142137)
+layers = 2
+mesh = SubResource("CylinderMesh_4r88b")
+
+[node name="Arm3" type="MeshInstance3D" parent="SubViewport/TinyCamera/Frustrum"]
+transform = Transform3D(0.632029, -0.697107, 0.338497, 0, 0.436802, 0.899557, -0.774944, -0.568547, 0.276071, -0.174277, 0.1092, -0.142137)
+layers = 2
+mesh = SubResource("CylinderMesh_0ybpo")
+
+[node name="Arm4" type="MeshInstance3D" parent="SubViewport/TinyCamera/Frustrum"]
+transform = Transform3D(0.632029, 0.697107, -0.338497, 0, 0.436802, 0.899557, 0.774944, -0.568547, 0.276071, 0.174277, 0.1092, -0.142137)
+layers = 2
+mesh = SubResource("CylinderMesh_6yrjs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+mesh = SubResource("CapsuleMesh_0xm4m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0247231, 0)
+shape = SubResource("CapsuleShape3D_esukh")

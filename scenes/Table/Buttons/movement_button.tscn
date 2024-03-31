@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwu36x1b0dkob"]
+
+[ext_resource type="Script" path="res://scenes/Table/Buttons/movement_button.gd" id="1_2mey1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jfow0"]
+size = Vector3(0.075, 0.05, 0.075)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7107m"]
+albedo_color = Color(1, 0.0862745, 0.0235294, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ufntq"]
+material = SubResource("StandardMaterial3D_7107m")
+size = Vector3(0.075, 0.05, 0.075)
+
+[sub_resource type="Animation" id="Animation_yh1c4"]
+resource_name = "push"
+length = 0.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.25, 1, 0, -0.02, 0, 0.5, 1, 0, 0, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:lock")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cvdn4"]
+_data = {
+"push": SubResource("Animation_yh1c4")
+}
+
+[node name="MovementButton" type="Area3D"]
+collision_layer = 0
+collision_mask = 131072
+script = ExtResource("1_2mey1")
+
+[node name="TinyStatic" type="StaticBody3D" parent="."]
+collision_layer = 256
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape3D" parent="TinyStatic"]
+shape = SubResource("BoxShape3D_jfow0")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ufntq")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_jfow0")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cvdn4")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
