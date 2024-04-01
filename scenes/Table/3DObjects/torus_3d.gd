@@ -12,6 +12,7 @@ extends Node3D
 
 var vertices = []
 var indices = []
+var normals = []
 
 func _ready():
 	# I did not want to make my own torus, so i borrowed this one from godot
@@ -40,7 +41,7 @@ func _ready():
 			var normalk = normalj * radius + Vector2(min_radius + radius, 0)
 
 			vertices.push_back(Vector3(normali.x * normalk.x, normalk.y, normali.y * normalk.x))
-			# normals.push_back(Vector3(normali.x * normalj.x, normalj.y, normali.y * normalj.x))
+			normals.push_back(Vector3(normali.x * normalj.x, normalj.y, normali.y * normalj.x))
 			
 			if i > 0 and j > 0:
 				indices.push_back(thisrow + j - 1);
@@ -54,8 +55,10 @@ func _ready():
 	# Add new children
 	for i in range(0, indices.size(), 3):
 		var t = Triangle3D.new()
+		t.do_normals = true
 
 		for j in range(3):
 			t.vertices[j] = vertices[indices[i+j]]
+			t.normals[j] = normals[indices[i+j]]
 
 		add_child(t)
