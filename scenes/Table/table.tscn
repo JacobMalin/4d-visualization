@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://poq05hssxap0"]
+[gd_scene load_steps=31 format=3 uid="uid://poq05hssxap0"]
 
 [ext_resource type="Script" path="res://scenes/Table/table.gd" id="1_gl6xo"]
 [ext_resource type="PackedScene" uid="uid://bcp688sph47rl" path="res://scenes/Table/FlatLand/Tiny/tiny.tscn" id="2_7f51b"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scenes/Table/3DObjects/triangle_3d.gd" id="10_avgx2"]
 [ext_resource type="PackedScene" uid="uid://driat2fkek0k4" path="res://scenes/Table/Buttons/disable_button.tscn" id="10_n0ncg"]
 [ext_resource type="PackedScene" uid="uid://djk85u1gops8n" path="res://scenes/Table/Buttons/reset_button.tscn" id="10_nrcww"]
+[ext_resource type="Script" path="res://scenes/Table/3DObjects/square_3d.gd" id="12_sfa1a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_843g4"]
 albedo_color = Color(0.384314, 0.235294, 0.133333, 1)
@@ -32,12 +33,6 @@ transparency = 1
 cull_mode = 2
 albedo_color = Color(0.109804, 0.313726, 0.690196, 0.105882)
 
-[sub_resource type="BoxMesh" id="BoxMesh_7n0jq"]
-size = Vector3(0.02, 0.02, 0.02)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ycw5d"]
-size = Vector3(0.02, 0.02, 0.02)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukjea"]
 albedo_color = Color(0.603922, 0.219608, 0.87451, 1)
 
@@ -49,23 +44,35 @@ albedo_color = Color(0.745098, 0.745098, 0.745098, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxj7k"]
 albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pb0bm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcr1i"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uon5r"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_xcr1i")
+size = Vector2(0.075, 0.075)
+center_offset = Vector3(0, 0.025, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xilb"]
 transparency = 1
+cull_mode = 2
 vertex_color_use_as_albedo = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_sl8xm"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_n32uy"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5a8th"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0jpu"]
 transparency = 1
+cull_mode = 2
 vertex_color_use_as_albedo = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_73k58"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_3gwh4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5esk7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0tbf6"]
 transparency = 1
+cull_mode = 2
 vertex_color_use_as_albedo = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_hp3d1"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_4esid"]
 
 [node name="Table" type="StaticBody3D"]
 script = ExtResource("1_gl6xo")
@@ -102,18 +109,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.25, 0)
 visible = false
 mesh = SubResource("BoxMesh_ogpvv")
 surface_material_override/0 = SubResource("StandardMaterial3D_dxpej")
-
-[node name="Box" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, -0.089)
-collision_layer = 256
-collision_mask = 0
-
-[node name="Mesh" type="MeshInstance3D" parent="Box"]
-mesh = SubResource("BoxMesh_7n0jq")
-skeleton = NodePath("../..")
-
-[node name="Collision" type="CollisionShape3D" parent="Box"]
-shape = SubResource("BoxShape3D_ycw5d")
 
 [node name="Buttons" type="Node3D" parent="."]
 
@@ -155,29 +150,45 @@ material_show = SubResource("StandardMaterial3D_fjbx6")
 material_hide = SubResource("StandardMaterial3D_pxj7k")
 lock = false
 
+[node name="Mesh" parent="Buttons/2DDisableButton" index="1"]
+mesh = SubResource("PlaneMesh_uon5r")
+
 [node name="3DObjects" type="Node3D" parent="."]
 
 [node name="Triangle3D" type="MeshInstance3D" parent="3DObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0506616, -0.237553)
-layers = 6
-material_override = SubResource("StandardMaterial3D_pb0bm")
-mesh = SubResource("ImmediateMesh_sl8xm")
+layers = 2
+material_override = SubResource("StandardMaterial3D_6xilb")
+mesh = SubResource("ImmediateMesh_n32uy")
 script = ExtResource("10_avgx2")
 vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
 colors = [Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)]
 
 [node name="Triangle3D2" type="MeshInstance3D" parent="3DObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0506616, 0.311211)
-layers = 7
-material_override = SubResource("StandardMaterial3D_5a8th")
-mesh = SubResource("ImmediateMesh_73k58")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046157, 0.0458109, 0.297737)
+layers = 2
+material_override = SubResource("StandardMaterial3D_u0jpu")
+mesh = SubResource("ImmediateMesh_3gwh4")
 script = ExtResource("10_avgx2")
 vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
 
 [node name="Triangle3D3" type="MeshInstance3D" parent="3DObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0506616, 0.132936)
-layers = 8
-material_override = SubResource("StandardMaterial3D_5esk7")
-mesh = SubResource("ImmediateMesh_hp3d1")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0.133)
+layers = 2
+material_override = SubResource("StandardMaterial3D_0tbf6")
+mesh = SubResource("ImmediateMesh_4esid")
 script = ExtResource("10_avgx2")
 vertices = [Vector3(-0.05, 0, 0), Vector3(-0.05, 0, -0.05), Vector3(0.05, 0, 0)]
+
+[node name="Square3D" type="Node3D" parent="3DObjects"]
+transform = Transform3D(0.999991, 0.00369985, 0.00186427, -0.00393318, 0.70643, 0.707772, 0.00130168, -0.707773, 0.706439, 0.208699, 0.0340535, -0.137044)
+script = ExtResource("12_sfa1a")
+size = Vector2(0.1, 0.1)
+colors = [Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1), Color(1, 1, 1, 1)]
+
+[node name="Square3D2" type="Node3D" parent="3DObjects"]
+transform = Transform3D(0.999991, 0.00369985, 0.00186427, -0.00393318, 0.70643, 0.707772, 0.00130168, -0.707773, 0.706439, 0.263545, 0.0340535, 0.149002)
+script = ExtResource("12_sfa1a")
+size = Vector2(0.1, 0.1)
+
+[editable path="Buttons/2DDisableButton"]

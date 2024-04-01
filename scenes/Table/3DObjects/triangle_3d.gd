@@ -21,13 +21,13 @@ const vfov = 75
 
 func _ready():
 	# Move off of tiny's camera
-	layers -= 1
-	layers += 2
+	layers = 2
 
 func _process(_double):
 	# Material
 	_mat.vertex_color_use_as_albedo = true
 	_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	_mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	material_override = _mat
 	
 	# Clear mesh
@@ -52,7 +52,7 @@ func draw_2d():
 	var global_vertices = []
 
 	for vertex in vertices:
-		global_vertices += [vertex + global_position]
+		global_vertices += [global_transform * vertex]
 
 	var hits = [
 		intersects_segment(global_vertices[0], global_vertices[1]),
@@ -120,7 +120,7 @@ func draw_2d():
 	_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
 	for i in range(vertices_2d.size()):
 		_mesh.surface_set_color(colors_2d[i])
-		_mesh.surface_add_vertex(project(vertices_2d[i]) - global_position)
+		_mesh.surface_add_vertex(global_transform.affine_inverse() * project(vertices_2d[i]))
 	_mesh.surface_end()
 
 func intersects_segment(vec1, vec2):
@@ -140,14 +140,12 @@ func interp_color(index, global_vertices, hits):
 
 func interp_alpha(color, global_vertex):
 	var projected_vertex = project(global_vertex)
-	var frustrum_vertex = TinyPlane.frustrum_plane.intersects_ray(projected_vertex, TinyPlane.plane.normal)
 
 	var alpha = 0
-	if frustrum_vertex:
-		var short = projected_vertex.distance_to(global_vertex)
-		var total = projected_vertex.distance_to(frustrum_vertex)
+	var short = projected_vertex.distance_to(global_vertex)
+	var total = projected_vertex.distance_to(TinyPlane.tiny_camera_pos) / tan(deg_to_rad(vfov/2.0))
 
-		alpha = 1 - short / total
+	alpha = 1 - short / total
 
 	color.a = alpha
 	return color

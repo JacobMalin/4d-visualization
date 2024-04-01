@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcp688sph47rl"]
+[gd_scene load_steps=11 format=3 uid="uid://bcp688sph47rl"]
 
 [ext_resource type="Script" path="res://scenes/Table/FlatLand/Tiny/tiny.gd" id="1_plvpf"]
 [ext_resource type="Script" path="res://scenes/Table/FlatLand/Tiny/tiny_camera.gd" id="2_iaicc"]
 [ext_resource type="Script" path="res://scenes/Table/FlatLand/frustrum.gd" id="3_mqjlq"]
 [ext_resource type="Material" uid="uid://b2vfads0frtmh" path="res://scenes/Table/FlatLand/frustrum_material.tres" id="4_siy8q"]
-[ext_resource type="Script" path="res://scenes/Table/FlatLand/Tiny/frustrum_plane.gd" id="5_g1gb0"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xn7i6"]
 material = ExtResource("4_siy8q")
@@ -76,11 +75,6 @@ mesh = SubResource("CylinderMesh_0ybpo")
 transform = Transform3D(0.632029, 0.697107, -0.338497, 0, 0.436802, 0.899557, 0.774944, -0.568547, 0.276071, 0.174277, 0.1092, -0.142137)
 layers = 2
 mesh = SubResource("CylinderMesh_6yrjs")
-
-[node name="FrustrumPlane" type="Node3D" parent="SubViewport/TinyCamera"]
-transform = Transform3D(1, 0, 0, 0, 0.793353, -0.608761, 0, 0.608761, 0.793353, 0, 0, 0)
-visible = false
-script = ExtResource("5_g1gb0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
