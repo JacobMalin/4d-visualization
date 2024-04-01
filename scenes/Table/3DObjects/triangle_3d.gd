@@ -27,7 +27,7 @@ func _process(_double):
 	# Material
 	_mat.vertex_color_use_as_albedo = true
 	_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	_mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	# _mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	material_override = _mat
 	
 	# Clear mesh

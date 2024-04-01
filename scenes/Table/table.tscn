@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://poq05hssxap0"]
+[gd_scene load_steps=32 format=3 uid="uid://poq05hssxap0"]
 
 [ext_resource type="Script" path="res://scenes/Table/table.gd" id="1_gl6xo"]
 [ext_resource type="PackedScene" uid="uid://bcp688sph47rl" path="res://scenes/Table/FlatLand/Tiny/tiny.tscn" id="2_7f51b"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://driat2fkek0k4" path="res://scenes/Table/Buttons/disable_button.tscn" id="10_n0ncg"]
 [ext_resource type="PackedScene" uid="uid://djk85u1gops8n" path="res://scenes/Table/Buttons/reset_button.tscn" id="10_nrcww"]
 [ext_resource type="Script" path="res://scenes/Table/3DObjects/square_3d.gd" id="12_sfa1a"]
+[ext_resource type="Script" path="res://scenes/Table/3DObjects/box_3d.gd" id="13_ouihp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_843g4"]
 albedo_color = Color(0.384314, 0.235294, 0.133333, 1)
@@ -53,26 +54,23 @@ material = SubResource("StandardMaterial3D_xcr1i")
 size = Vector2(0.075, 0.075)
 center_offset = Vector3(0, 0.025, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xilb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grd52"]
 transparency = 1
-cull_mode = 2
 vertex_color_use_as_albedo = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_n32uy"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_2cykp"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0jpu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fg8gw"]
 transparency = 1
-cull_mode = 2
 vertex_color_use_as_albedo = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_3gwh4"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_46j0y"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0tbf6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7xqe"]
 transparency = 1
-cull_mode = 2
 vertex_color_use_as_albedo = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_4esid"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_nxdho"]
 
 [node name="Table" type="StaticBody3D"]
 script = ExtResource("1_gl6xo")
@@ -158,8 +156,8 @@ mesh = SubResource("PlaneMesh_uon5r")
 [node name="Triangle3D" type="MeshInstance3D" parent="3DObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0506616, -0.237553)
 layers = 2
-material_override = SubResource("StandardMaterial3D_6xilb")
-mesh = SubResource("ImmediateMesh_n32uy")
+material_override = SubResource("StandardMaterial3D_grd52")
+mesh = SubResource("ImmediateMesh_2cykp")
 script = ExtResource("10_avgx2")
 vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
 colors = [Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)]
@@ -167,16 +165,16 @@ colors = [Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)]
 [node name="Triangle3D2" type="MeshInstance3D" parent="3DObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046157, 0.0458109, 0.297737)
 layers = 2
-material_override = SubResource("StandardMaterial3D_u0jpu")
-mesh = SubResource("ImmediateMesh_3gwh4")
+material_override = SubResource("StandardMaterial3D_fg8gw")
+mesh = SubResource("ImmediateMesh_46j0y")
 script = ExtResource("10_avgx2")
 vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
 
 [node name="Triangle3D3" type="MeshInstance3D" parent="3DObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0.133)
 layers = 2
-material_override = SubResource("StandardMaterial3D_0tbf6")
-mesh = SubResource("ImmediateMesh_4esid")
+material_override = SubResource("StandardMaterial3D_n7xqe")
+mesh = SubResource("ImmediateMesh_nxdho")
 script = ExtResource("10_avgx2")
 vertices = [Vector3(-0.05, 0, 0), Vector3(-0.05, 0, -0.05), Vector3(0.05, 0, 0)]
 
@@ -187,8 +185,28 @@ size = Vector2(0.1, 0.1)
 colors = [Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1), Color(1, 1, 1, 1)]
 
 [node name="Square3D2" type="Node3D" parent="3DObjects"]
-transform = Transform3D(0.999991, 0.00369985, 0.00186427, -0.00393318, 0.70643, 0.707772, 0.00130168, -0.707773, 0.706439, 0.263545, 0.0340535, 0.149002)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0.263545, 0.0340535, 0.149002)
 script = ExtResource("12_sfa1a")
 size = Vector2(0.1, 0.1)
+
+[node name="Square3D3" type="Node3D" parent="3DObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263747, 0.110774, 0.293565)
+script = ExtResource("12_sfa1a")
+size = Vector2(0.1, 0.1)
+
+[node name="Box3D" type="Node3D" parent="3DObjects"]
+transform = Transform3D(0.853553, -0.146447, 0.5, 0.5, 0.5, -0.707107, -0.146447, 0.853553, 0.5, -0.243548, 0.0843059, 0.200924)
+script = ExtResource("13_ouihp")
+size = Vector3(0.01, 0.01, 0.01)
+
+[node name="Box3D2" type="Node3D" parent="3DObjects"]
+transform = Transform3D(-0.427649, -0.0760276, -0.900742, -0.684289, -0.623868, 0.377541, -0.590647, 0.777823, 0.214772, -0.297551, 0.0843059, 0.125826)
+script = ExtResource("13_ouihp")
+size = Vector3(0.01, 0.01, 0.01)
+
+[node name="Box3D3" type="Node3D" parent="3DObjects"]
+transform = Transform3D(-0.346937, 0.600871, -0.720131, -0.598954, 0.44891, 0.663124, 0.721726, 0.661388, 0.204151, -0.20389, 0.0843059, 0.0642294)
+script = ExtResource("13_ouihp")
+size = Vector3(0.02, 0.01, 0.01)
 
 [editable path="Buttons/2DDisableButton"]
