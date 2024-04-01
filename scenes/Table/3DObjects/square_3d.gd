@@ -21,7 +21,7 @@ func _ready():
 	add_child(triangles[0])
 	add_child(triangles[1])
 
-func _process(_double):
+func _process(_delta):
 	var vertices = [
 		center_offset - size.x * Vector3.RIGHT / 2 + size.y * Vector3.UP / 2,
 		center_offset + size.x * Vector3.RIGHT / 2 + size.y * Vector3.UP / 2,

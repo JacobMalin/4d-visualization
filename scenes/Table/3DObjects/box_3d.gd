@@ -19,7 +19,7 @@ func _ready():
 	for square in squares:
 		add_child(square)
 
-func _process(_double):
+func _process(_delta):
 	# Square 0 - +z
 	squares[0].size = Vector2(size.x, size.y)
 	squares[0].position.z = size.z / 2

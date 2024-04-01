@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://poq05hssxap0"]
+[gd_scene load_steps=31 format=3 uid="uid://poq05hssxap0"]
 
 [ext_resource type="Script" path="res://scenes/Table/table.gd" id="1_gl6xo"]
 [ext_resource type="PackedScene" uid="uid://bcp688sph47rl" path="res://scenes/Table/FlatLand/Tiny/tiny.tscn" id="2_7f51b"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dphqhvwoot1w5" path="res://scenes/Table/Buttons/shift_button.tscn" id="11_oc4c7"]
 [ext_resource type="Script" path="res://scenes/Table/3DObjects/square_3d.gd" id="12_sfa1a"]
 [ext_resource type="Script" path="res://scenes/Table/3DObjects/box_3d.gd" id="13_ouihp"]
+[ext_resource type="Script" path="res://scenes/Table/3DObjects/torus_3d.gd" id="16_pmtoq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vvta2"]
 material = ExtResource("2_dw6sr")
@@ -204,5 +205,13 @@ size = Vector3(0.1, 0.1, 0.1)
 transform = Transform3D(-0.346937, 0.600871, -0.720131, -0.598954, 0.44891, 0.663124, 0.721726, 0.661388, 0.204151, -0.186733, 0.0736334, -0.252887)
 script = ExtResource("13_ouihp")
 size = Vector3(0.08, 0.04, 0.04)
+
+[node name="Torus3D" type="Node3D" parent="3DObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.117444, 0.0668161, -0.0869912)
+script = ExtResource("16_pmtoq")
+inner_radius = 0.023
+outer_radius = 0.053
+rings = 16
+ring_segments = 8
 
 [editable path="Buttons/2DDisableButton"]
