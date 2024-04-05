@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_42os0"]
 [ext_resource type="PackedScene" uid="uid://b4eci8600mqwv" path="res://scenes/Player/XRRig.tscn" id="2_kd0jq"]
-[ext_resource type="PackedScene" uid="uid://cwfmn7vqp1r2j" path="res://scenes/Floor/floor.tscn" id="3_u8m4h"]
+[ext_resource type="PackedScene" uid="uid://cwfmn7vqp1r2j" path="res://scenes/HyperTable/hyper_table.tscn" id="3_u8m4h"]
 [ext_resource type="PackedScene" uid="uid://poq05hssxap0" path="res://scenes/Table/table.tscn" id="4_p4hks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b0few"]
@@ -33,11 +33,11 @@ environment = SubResource("Environment_xgafm")
 
 [node name="XRRig" parent="." instance=ExtResource("2_kd0jq")]
 
-[node name="Floor" parent="." instance=ExtResource("3_u8m4h")]
-
 [node name="Table" parent="." node_paths=PackedStringArray("head", "left_controller", "right_controller", "movement_controller") instance=ExtResource("4_p4hks")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09577, -3.01)
 head = NodePath("../XRRig/XRCamera3D")
 left_controller = NodePath("../XRRig/LeftController")
 right_controller = NodePath("../XRRig/RightController")
 movement_controller = NodePath("../XRRig/MovementController")
+
+[node name="HyperTable" parent="." instance=ExtResource("3_u8m4h")]

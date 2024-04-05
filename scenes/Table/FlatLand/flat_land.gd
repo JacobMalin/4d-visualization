@@ -30,11 +30,11 @@ func _process(_delta):
 	for corner in four_corners:
 		var vertex
 		
-		vertex = TinyPlane.plane.intersects_ray(corner, Vector3.DOWN)
-		if not vertex: vertex = TinyPlane.plane.intersects_ray(corner, Vector3.UP)
+		vertex = FlatReference.plane.intersects_ray(corner, Vector3.DOWN)
+		if not vertex: vertex = FlatReference.plane.intersects_ray(corner, Vector3.UP)
 		if not vertex: vertex = Vector3.ZERO # Does not intersect
 
-		_mesh.surface_set_normal(TinyPlane.plane.normal)
+		_mesh.surface_set_normal(FlatReference.plane.normal)
 		_mesh.surface_add_vertex(vertex - mesh.global_position)
 	_mesh.surface_end()
 

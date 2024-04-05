@@ -23,8 +23,8 @@ func _ready():
 func _physics_process(_delta):
 	# Store plane eq
 	var global_normal = global_transform.basis.y
-	TinyPlane.plane = Plane(global_normal, global_position)
-	TinyPlane.tiny_camera_pos = global_position
+	FlatReference.plane = Plane(global_normal, global_position)
+	FlatReference.tiny_camera_pos = global_position
 
 	if Engine.is_editor_hint(): return
 

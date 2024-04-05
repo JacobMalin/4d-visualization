@@ -143,7 +143,7 @@ material_hide = SubResource("StandardMaterial3D_tl4hy")
 
 [node name="3DDisableButton" parent="Buttons" instance=ExtResource("10_n0ncg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211737, 0, 0.43)
-target_path = NodePath("/root/Reference3D")
+target_path = NodePath("/root/FlatReference")
 _name = &"show_3d"
 material_show = SubResource("StandardMaterial3D_fjbx6")
 material_hide = SubResource("StandardMaterial3D_pxj7k")
@@ -151,7 +151,7 @@ lock = false
 
 [node name="2DDisableButton" parent="Buttons" instance=ExtResource("10_n0ncg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.111553, 0, 0.43)
-target_path = NodePath("/root/Reference3D")
+target_path = NodePath("/root/FlatReference")
 _name = &"show_2d"
 material_show = SubResource("StandardMaterial3D_fjbx6")
 material_hide = SubResource("StandardMaterial3D_pxj7k")
@@ -168,18 +168,21 @@ script = ExtResource("10_avgx2")
 vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
 colors = [Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)]
 do_normals = null
+normals = [Vector3(0, 0.447214, 0.894427), Vector3(0, 0.447214, 0.894427), Vector3(0, 0.447214, 0.894427)]
 
 [node name="Triangle3D2" type="Node3D" parent="3DObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046157, 0.0458109, 0.297737)
 script = ExtResource("10_avgx2")
 vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
 do_normals = null
+normals = [Vector3(0, 0.447214, 0.894427), Vector3(0, 0.447214, 0.894427), Vector3(0, 0.447214, 0.894427)]
 
 [node name="Triangle3D3" type="Node3D" parent="3DObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0.133)
 script = ExtResource("10_avgx2")
 vertices = [Vector3(-0.05, 0, 0), Vector3(-0.05, 0, -0.05), Vector3(0.05, 0, 0)]
 do_normals = null
+normals = [Vector3(0, 1, 0), Vector3(0, 1, 0), Vector3(0, 1, 0)]
 
 [node name="Square3D" type="Node3D" parent="3DObjects"]
 transform = Transform3D(0.999991, 0.00369985, 0.00186427, -0.00393318, 0.70643, 0.707772, 0.00130168, -0.707773, 0.706439, 0.208699, 0.0340535, -0.137044)

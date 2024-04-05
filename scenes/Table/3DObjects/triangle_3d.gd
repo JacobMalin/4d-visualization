@@ -64,10 +64,10 @@ func _process(_delta):
 
 	# Draw mesh
 	draw_3d()
-	if Reference3D.show_2d: draw_2d()
+	if FlatReference.show_2d: draw_2d()
 
 	# Hide mesh
-	if Reference3D.show_3d: mesh_3d.layers = 1
+	if FlatReference.show_3d: mesh_3d.layers = 1
 	else: mesh_3d.layers = 4
 
 	# Set mesh
@@ -180,10 +180,10 @@ func draw_2d():
 	_mesh_2d.surface_end()
 
 func intersects_segment(vec1, vec2):
-	return TinyPlane.plane.intersects_segment(vec1, vec2)
+	return FlatReference.plane.intersects_segment(vec1, vec2)
 
 func project(vertex):
-	return TinyPlane.plane.project(vertex)
+	return FlatReference.plane.project(vertex)
 
 func interp_color(index, global_vertices, hits):
 	var right_index = (index + 1) % 3
