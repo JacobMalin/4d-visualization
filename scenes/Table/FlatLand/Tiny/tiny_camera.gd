@@ -26,10 +26,10 @@ func _physics_process(_delta):
 	FlatReference.plane = Plane(global_normal, global_position)
 	FlatReference.tiny_camera_pos = global_position
 
-	if Engine.is_editor_hint(): return
-
 	# Move camera
 	global_position = tiny.global_position + offset
+
+	if Engine.is_editor_hint(): return
 
 	if tiny.enabled:
 		# global_rotation.y = head.global_rotation.y

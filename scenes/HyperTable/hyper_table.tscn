@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwfmn7vqp1r2j"]
+[gd_scene load_steps=5 format=3 uid="uid://cwfmn7vqp1r2j"]
 
 [ext_resource type="Material" uid="uid://dhjl7tuucybyj" path="res://scenes/HyperTable/grass.tres" id="1_kaqb4"]
+[ext_resource type="Script" path="res://scenes/HyperTable/node_4d.gd" id="2_vp4tb"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hjah1"]
 size = Vector2(100, 100)
@@ -16,3 +17,9 @@ skeleton = NodePath("../..")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("WorldBoundaryShape3D_uvf7b")
+
+[node name="Node4D" type="Node3D" parent="."]
+script = ExtResource("2_vp4tb")
+_position = Vector4(0, 0, 0, 0)
+_rotation = Vector4(0, 0, 0, 0)
+_scale = Vector4(1, 1, 1, 1)
