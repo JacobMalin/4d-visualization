@@ -5,6 +5,10 @@ extends Area3D
 @export var normal_layer : int
 @export var shifted_layer : int
 
+@export var to_shift_2 : Node3D
+@export var normal_layer_2 : int
+@export var shifted_layer_2 : int
+
 @export var material_show : StandardMaterial3D
 @export var material_hide : StandardMaterial3D
 
@@ -34,9 +38,11 @@ func swap(_shifted):
 
 	if shifted:
 		to_shift.layers = shifted_layer
+		to_shift_2.collision_layer = shifted_layer_2
 		material(material_hide)
 	else:
 		to_shift.layers = normal_layer
+		to_shift_2.collision_layer = normal_layer_2
 		material(material_show)
 
 func material(m : Material):

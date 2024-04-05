@@ -29,8 +29,8 @@ func _on_area_entered(_area:Area3D):
 		swap(!tableControl)
 
 func _on_left_controller_button_pressed(_name):
-	if tableControl and _name == exit_action:
-		swap(false)
+	if _name == exit_action:
+		swap(!tableControl)
 
 ## Helpers
 

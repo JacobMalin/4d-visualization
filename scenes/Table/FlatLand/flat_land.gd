@@ -29,10 +29,12 @@ func _process(_delta):
 	_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
 	for corner in four_corners:
 		var vertex
-		if TinyPlane.plane.is_point_over(corner):
-			vertex = TinyPlane.plane.intersects_ray(corner, Vector3.DOWN)
-		else:
-			vertex = TinyPlane.plane.intersects_ray(corner, Vector3.UP)
+		
+		vertex = TinyPlane.plane.intersects_ray(corner, Vector3.DOWN)
+		if not vertex: vertex = TinyPlane.plane.intersects_ray(corner, Vector3.UP)
+		if not vertex: vertex = Vector3.ZERO # Does not intersect
+
+		_mesh.surface_set_normal(TinyPlane.plane.normal)
 		_mesh.surface_add_vertex(vertex - mesh.global_position)
 	_mesh.surface_end()
 

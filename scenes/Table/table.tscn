@@ -125,10 +125,13 @@ to_hide = NodePath("../../FlatLand/Mesh")
 material_show = SubResource("StandardMaterial3D_oxkku")
 material_hide = ExtResource("7_ndgbw")
 
-[node name="TableShiftButton" parent="Buttons" node_paths=PackedStringArray("to_shift") instance=ExtResource("11_oc4c7")]
+[node name="TableShiftButton" parent="Buttons" node_paths=PackedStringArray("to_shift", "to_shift_2") instance=ExtResource("11_oc4c7")]
 to_shift = NodePath("../../Mesh")
 normal_layer = 1
 shifted_layer = 4
+to_shift_2 = NodePath("../..")
+normal_layer_2 = 1
+shifted_layer_2 = 256
 material_show = ExtResource("2_dw6sr")
 material_hide = SubResource("StandardMaterial3D_8h2bu")
 

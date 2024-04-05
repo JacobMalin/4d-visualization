@@ -66,3 +66,4 @@ func _on_right_controller_button_pressed(_name):
 func reset():
 	position = Vector3.ZERO
 	rotation = Vector3.ZERO
+	tiny_camera.reset()

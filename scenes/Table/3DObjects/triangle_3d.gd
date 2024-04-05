@@ -47,10 +47,16 @@ func _process(_delta):
 
 	# Material - 2d
 	_mat_2d.vertex_color_use_as_albedo = true
-	_mat_2d.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	_mat_2d.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
 	_mat_2d.cull_mode = BaseMaterial3D.CULL_DISABLED
 
 	mesh_2d.material_override = _mat_2d
+
+	# Set default normals
+	if not do_normals:
+		var normal = Plane(vertices[0], vertices[1], vertices[2]).normal
+
+		for i in range(3): normals[i] = normal
 	
 	# Clear mesh
 	_mesh_3d.clear_surfaces()
