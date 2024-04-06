@@ -38,7 +38,6 @@ func _physics_process(_delta):
 		# Rotate camera more
 		if is_mousepad():
 			var dpi = 5
-			print(mouse_diff().z)
 			global_rotation.x += (mouse_diff()).z * (abs((mouse_diff()).z) / 0.01) * dpi
 			global_rotation.y -= (mouse_diff()).x * (abs((mouse_diff()).x) / 0.01) * dpi
 			# global_rotation.z += (mouse_diff()).y * (abs((mouse_diff()).y) / 0.01) * dpi

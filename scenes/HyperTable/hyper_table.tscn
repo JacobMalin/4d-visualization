@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwfmn7vqp1r2j"]
+[gd_scene load_steps=6 format=3 uid="uid://cwfmn7vqp1r2j"]
 
 [ext_resource type="Material" uid="uid://dhjl7tuucybyj" path="res://scenes/HyperTable/grass.tres" id="1_kaqb4"]
-[ext_resource type="Script" path="res://scenes/HyperTable/node_4d.gd" id="2_vp4tb"]
+[ext_resource type="Script" path="res://scenes/HyperTable/Base/node_4d.gd" id="2_538e2"]
+[ext_resource type="Script" path="res://scenes/HyperTable/4DObjects/triangle_4d.gd" id="3_2ai6j"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hjah1"]
 size = Vector2(100, 100)
@@ -18,8 +19,17 @@ skeleton = NodePath("../..")
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("WorldBoundaryShape3D_uvf7b")
 
-[node name="Node4D" type="Node3D" parent="."]
-script = ExtResource("2_vp4tb")
+[node name="4DObjects" type="Node3D" parent="."]
+script = ExtResource("2_538e2")
 _position = Vector4(0, 0, 0, 0)
-_rotation = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(1, 1, 1, 1)
+
+[node name="Triangle4D" type="Node3D" parent="4DObjects"]
+script = ExtResource("3_2ai6j")
+vertices = [Vector4(0.69, 0.255, -0.605, 0), Vector4(0, 2.185, 1.32, 0), Vector4(-0.89, 0.455, 0.19, 0)]
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
 _scale = Vector4(1, 1, 1, 1)

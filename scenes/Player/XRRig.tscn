@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://b4eci8600mqwv"]
 
-[ext_resource type="Script" path="res://scenes/Player/main_camera.gd" id="1_giyyv"]
+[ext_resource type="Script" path="res://scenes/Player/main_camera_4d.gd" id="1_giyyv"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_hbs25"]
 [ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_5hx4i"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="3_obqfv"]
@@ -26,7 +26,13 @@ radius = 0.2
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 cull_mask = 1048571
+
+[node name="MainCamera4D" type="Node3D" parent="XRCamera3D"]
 script = ExtResource("1_giyyv")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(1, 1, 1, 1)
 
 [node name="LeftController" type="XRController3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)

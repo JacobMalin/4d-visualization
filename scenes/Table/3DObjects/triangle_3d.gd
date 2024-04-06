@@ -22,12 +22,11 @@ extends Node3D
 ]
 
 @onready var mesh_3d = MeshInstance3D.new()
-@onready var mesh_2d = MeshInstance3D.new()
-
 @onready var _mesh_3d = ImmediateMesh.new()
-@onready var _mesh_2d = ImmediateMesh.new()
-
 @onready var _mat_3d = StandardMaterial3D.new()
+
+@onready var mesh_2d = MeshInstance3D.new()
+@onready var _mesh_2d = ImmediateMesh.new()
 @onready var _mat_2d = StandardMaterial3D.new()
 
 func _ready():
@@ -47,7 +46,7 @@ func _process(_delta):
 
 	# Material - 2d
 	_mat_2d.vertex_color_use_as_albedo = true
-	_mat_2d.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
+	_mat_2d.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	_mat_2d.cull_mode = BaseMaterial3D.CULL_DISABLED
 
 	mesh_2d.material_override = _mat_2d

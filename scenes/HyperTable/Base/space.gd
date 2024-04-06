@@ -11,10 +11,10 @@ func _init(p_normal = Vector4.ZERO, p_e = 0):
 	normal = p_normal
 	e = p_e
 
-static func SpaceFromABCDE(p_a, p_b, p_c, p_d, p_e = 0):
+static func newFromABCDE(p_a, p_b, p_c, p_d, p_e = 0):
 	return Space.new(Vector4(p_a, p_b, p_c, p_d), p_e)
 
-static func SpaceFromPoint(p_normal, p_point):
+static func newFromPoint(p_normal, p_point):
 	var s = Space.new(p_normal)
 	s.e = p_normal.dot(p_point)
 	return s
@@ -54,16 +54,16 @@ func has_point(p_point, p_tolerance = EPSILON):
 
 ## intersections
 
-func intersect_3(p_space1, p_space2):
-	pass
+# func intersect_3(p_space1, p_space2):
+# 	pass
 
 
-func intersects_ray(p_from, p_dir):
-	pass
+# func intersects_ray(p_from, p_dir):
+# 	pass
 
 
-func intersects_segment(p_begin, p_end):
-	pass
+# func intersects_segment(p_begin, p_end):
+# 	pass
 
 	
 func project(p_point):
