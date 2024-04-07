@@ -48,6 +48,7 @@ func _process(_delta):
 	_mat_2d.vertex_color_use_as_albedo = true
 	_mat_2d.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	_mat_2d.cull_mode = BaseMaterial3D.CULL_DISABLED
+	_mat_2d.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 
 	mesh_2d.material_override = _mat_2d
 

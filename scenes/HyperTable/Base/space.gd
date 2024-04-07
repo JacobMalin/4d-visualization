@@ -1,4 +1,5 @@
 # This class is heavily inspired by godot's Plane class
+# https://github.com/godotengine/godot/blob/master/core/math/plane.cpp
 class_name Space
 extends Node
 
@@ -62,8 +63,21 @@ func has_point(p_point, p_tolerance = EPSILON):
 # 	pass
 
 
-# func intersects_segment(p_begin, p_end):
-# 	pass
+func intersects_segment(p_begin, p_end):
+	var segment = p_begin - p_end;
+	var den = normal.dot(segment);
+
+	if is_zero_approx(den):
+		return null
+
+	var dist = (normal.dot(p_begin) - e) / den
+
+	if dist < -EPSILON or dist > (1 + EPSILON):
+		return null
+
+	dist = -dist
+
+	return p_begin + segment * dist
 
 	
 func project(p_point):

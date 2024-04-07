@@ -33,14 +33,14 @@ func _physics_process(_delta):
 
 	if tiny.enabled:
 		# global_rotation.y = head.global_rotation.y
-		global_rotation.z = head.global_rotation.z
+		# global_rotation.z = head.global_rotation.z
 
 		# Rotate camera more
 		if is_mousepad():
 			var dpi = 5
 			global_rotation.x += (mouse_diff()).z * (abs((mouse_diff()).z) / 0.01) * dpi
 			global_rotation.y -= (mouse_diff()).x * (abs((mouse_diff()).x) / 0.01) * dpi
-			# global_rotation.z += (mouse_diff()).y * (abs((mouse_diff()).y) / 0.01) * dpi
+			global_rotation.z += (mouse_diff()).y * (abs((mouse_diff()).y) / 0.01) * dpi
 
 	# Store previous mose pos
 	prev_mouse_pos = right_controller.global_position

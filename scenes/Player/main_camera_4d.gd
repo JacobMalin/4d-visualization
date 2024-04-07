@@ -4,7 +4,7 @@ extends Node4D
 
 func _physics_process(_delta):
 	# Store space eq
-	var global_normal = _global_transform.basis.y
+	var global_normal = _global_transform.basis.w
 	HyperReference.space = Space.newFromPoint(global_normal, _global_position)
 	HyperReference.space.normalize()
 	HyperReference.camera_pos = _global_position
