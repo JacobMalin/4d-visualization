@@ -125,7 +125,7 @@ var _global_scale : Vector4 = Vector4.ZERO :
 				parent_scl.x = parent.scale.x
 				parent_scl.y = parent.scale.y
 				parent_scl.z = parent.scale.z
-		return parent_scl + Vector4(_transform.scale)
+		return parent_scl * Vector4(_transform.scale)
 	set(s):
 		var parent = get_parent()
 		var parent_scl = Vector4.ONE
@@ -137,7 +137,7 @@ var _global_scale : Vector4 = Vector4.ZERO :
 				parent_scl.y = parent.scale.y
 				parent_scl.z = parent.scale.z
 		_transform = Transform4D.new(_transform.position, _transform.rotation_degrees_1, 
-									 _transform.rotation_degrees_2, s - parent_scl)
+									 _transform.rotation_degrees_2, s / parent_scl)
 
 
 @warning_ignore("unused_private_class_variable")

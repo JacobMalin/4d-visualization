@@ -83,7 +83,7 @@ func row(i):
 	elif i == 3: return w
 
 func a(i, j):
-	return row(i)[j]
+	return row(i-1)[j-1]
 
 func col(j):
 	var _col = Vector4.ZERO
@@ -104,6 +104,9 @@ static func cos_deg(theta):
 
 static func sin_deg(theta):
 	return sin(deg_to_rad(theta))
+
+func xform(p_vector):
+	return Vector4(x.dot(p_vector), y.dot(p_vector), z.dot(p_vector), w.dot(p_vector))
 
 func inverse():
 	# inverse and det from the site:

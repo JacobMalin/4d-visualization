@@ -55,7 +55,7 @@ func _process(_delta):
 
 func draw_3d():
 	var global_vertices = []
-	var global_normals = []
+	# var global_normals = []
 
 	for vertex in vertices:
 		global_vertices += [_global_transform.mul(vertex)]
@@ -69,7 +69,7 @@ func draw_3d():
 	]
 
 	var colors_3d = []
-	var normals_3d = []
+	# var normals_3d = []
 	var vertices_3d = []
 
 	if hits[0] and hits[1] and not hits[2]:
@@ -143,10 +143,11 @@ func draw_3d():
 
 	# Draw
 	_mesh_3d.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
-	for i in range(3):
+	for i in range(vertices_3d.size()):
 		_mesh_3d.surface_set_color(colors_3d[i])
 		# if do_normals: _mesh_3d.surface_set_normal(_global_transform.mul_affine_inverse(normals_3d[i]))
-		var vertex = _global_transform.mul_affine_inverse(HyperReference.space.project(vertices[i]))
+		# var vertex = vertices[i]
+		var vertex = _global_transform.mul_affine_inverse(HyperReference.space.project(vertices_3d[i]))
 		_mesh_3d.surface_add_vertex(Vector3(vertex.x, vertex.y, vertex.z)) # TODO fix
 	_mesh_3d.surface_end()
 
