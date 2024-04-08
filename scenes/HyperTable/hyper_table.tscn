@@ -28,7 +28,7 @@ _scale = Vector4(1, 1, 1, 1)
 
 [node name="Triangle4D" type="Node3D" parent="4DObjects"]
 script = ExtResource("3_2ai6j")
-vertices = [Vector4(0.69, 0.255, -1.32, 0), Vector4(0, 2.185, 1.32, 0), Vector4(-0.89, 0.455, 0.19, 0)]
+vertices = [Vector4(0.69, 0.255, -1.29, 0), Vector4(0, 2.185, 1.32, 0), Vector4(-0.89, 0.455, 0.19, 0)]
 _position = Vector4(0, 0, 0, 0)
 _rotation_1 = Vector3(0, 0, 0)
 _rotation_2 = Vector3(0, 0, 0)

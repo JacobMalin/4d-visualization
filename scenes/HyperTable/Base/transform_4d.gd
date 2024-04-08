@@ -30,20 +30,10 @@ func mul(p_vector):
 	var _basis = basis
 	var _origin = origin
 
-	var x = Vector4(_basis.x.x, _basis.x.y, _basis.x.z, _origin.x)
-	var y = Vector4(_basis.y.x, _basis.y.y, _basis.y.z, _origin.y)
-	var z = Vector4(_basis.z.x, _basis.z.y, _basis.z.z, _origin.z)
-	var w = Vector4(_basis.w.x, _basis.w.y, _basis.w.z, _origin.w)
-
-	return Vector4(x.dot(p_vector), y.dot(p_vector), z.dot(p_vector), w.dot(p_vector))
+	return _basis.xform(p_vector) + _origin
 
 func mul_affine_inverse(p_vector):
 	var _basis = basis.inverse()
 	var _origin = _basis.xform(-origin)
 
-	var x = Vector4(_basis.x.x, _basis.x.y, _basis.x.z, _origin.x)
-	var y = Vector4(_basis.y.x, _basis.y.y, _basis.y.z, _origin.y)
-	var z = Vector4(_basis.z.x, _basis.z.y, _basis.z.z, _origin.z)
-	var w = Vector4(_basis.w.x, _basis.w.y, _basis.w.z, _origin.w)
-
-	return Vector4(x.dot(p_vector), y.dot(p_vector), z.dot(p_vector), w.dot(p_vector))
+	return _basis.xform(p_vector) + _origin
