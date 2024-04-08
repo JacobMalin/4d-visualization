@@ -72,7 +72,7 @@ func intersects_segment(p_begin, p_end):
 
 	var dist = (normal.dot(p_begin) - e) / den
 
-	if dist < -EPSILON or dist > (1 + EPSILON):
+	if dist < EPSILON or dist > (1 + EPSILON):
 		return null
 
 	dist = -dist

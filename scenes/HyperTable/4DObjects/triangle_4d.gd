@@ -142,7 +142,7 @@ func draw_3d():
 		vertices_3d = global_vertices
 
 	# Draw
-	_mesh_3d.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
+	_mesh_3d.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
 	for i in range(vertices_3d.size()):
 		_mesh_3d.surface_set_color(colors_3d[i])
 		# if do_normals: _mesh_3d.surface_set_normal(_global_transform.mul_affine_inverse(normals_3d[i]))
