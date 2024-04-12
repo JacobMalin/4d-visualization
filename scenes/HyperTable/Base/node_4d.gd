@@ -3,16 +3,8 @@ class_name Node4D
 extends Node3D
 
 @export_group("Transform4D")
-@warning_ignore("unused_private_class_variable")
-var _rotation_2 : Vector3 = Vector3.ZERO :
-	get: return Vector3(_transform.rotation_degrees_2)
-	set(r2): 
-		_transform = Transform4D.new(_transform.position, _transform.rotation_degrees_1, r2, _transform.scale)
-@warning_ignore("unused_private_class_variable")
-var _scale : Vector4 = Vector4.ONE :
-	get: return Vector4(_transform.scale)
-	set(s): 
-		_transform = Transform4D.new(_transform.position, _transform.rotation_degrees_1, _transform.rotation_degrees_2, s)
+@export var position_w = 0.0
+@export var rotation_2: Vector3 = Vector3.ZERO
 @export var scale_w = 1.0
 
 @onready var parent = get_parent()
