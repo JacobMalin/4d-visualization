@@ -3,6 +3,7 @@ class_name TinyCamera
 extends Camera3D
 
 @export var mousepad_action: String = "grip"
+@export var reset_action: String = "primary_click"
 
 @export var tiny : Tiny
 @export var offset = Vector3.UP * 0.04
@@ -13,12 +14,15 @@ extends Camera3D
 
 var prev_mouse_pos
 
+const dpi = 5
+
 ## Lifecycle
 
 func _ready():
 	if Engine.is_editor_hint(): return
 
 	prev_mouse_pos = right_controller.global_position
+	right_controller.button_pressed.connect(_on_right_controller_button_pressed)
 
 func _physics_process(_delta):
 	# Store plane eq
@@ -37,13 +41,18 @@ func _physics_process(_delta):
 
 		# Rotate camera more
 		if is_mousepad():
-			var dpi = 5
 			global_rotation.x += (mouse_diff()).z * (abs((mouse_diff()).z) / 0.01) * dpi
 			global_rotation.y -= (mouse_diff()).x * (abs((mouse_diff()).x) / 0.01) * dpi
 			global_rotation.z += (mouse_diff()).y * (abs((mouse_diff()).y) / 0.01) * dpi
 
 	# Store previous mose pos
 	prev_mouse_pos = right_controller.global_position
+
+## Events
+
+func _on_right_controller_button_pressed(_name):
+	if tiny.enabled and _name == reset_action:
+		reset()
 
 ## Helpers
 

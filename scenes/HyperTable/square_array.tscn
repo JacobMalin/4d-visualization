@@ -1,0 +1,108 @@
+[gd_scene load_steps=3 format=3 uid="uid://bip5kd8imorgh"]
+
+[ext_resource type="Script" path="res://scenes/HyperTable/Base/node_4d.gd" id="1_25mqp"]
+[ext_resource type="Script" path="res://scenes/HyperTable/4DObjects/square_4d.gd" id="2_fouoy"]
+
+[node name="Square Array" type="Node3D"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("1_25mqp")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)
+
+[node name="Row1" type="Node3D" parent="."]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("1_25mqp")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)
+
+[node name="Square4D" type="Node3D" parent="Row1"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("2_fouoy")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)
+
+[node name="Square4D2" type="Node3D" parent="Row1"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("2_fouoy")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)
+
+[node name="Square4D3" type="Node3D" parent="Row1"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("2_fouoy")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)
+
+[node name="Row2" type="Node3D" parent="."]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("1_25mqp")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)
+
+[node name="Square4D" type="Node3D" parent="Row2"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("2_fouoy")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)
+
+[node name="Square4D2" type="Node3D" parent="Row2"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("2_fouoy")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)
+
+[node name="Square4D3" type="Node3D" parent="Row2"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("2_fouoy")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)
+
+[node name="Row3" type="Node3D" parent="."]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("1_25mqp")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)
+
+[node name="Square4D" type="Node3D" parent="Row3"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("2_fouoy")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)
+
+[node name="Square4D2" type="Node3D" parent="Row3"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("2_fouoy")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)
+
+[node name="Square4D3" type="Node3D" parent="Row3"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("2_fouoy")
+_position = Vector4(0, 0, 0, 0)
+_rotation_1 = Vector3(0, 0, 0)
+_rotation_2 = Vector3(0, 0, 0)
+_scale = Vector4(0, 0, 0, 1)

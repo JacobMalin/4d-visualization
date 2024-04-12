@@ -166,7 +166,6 @@ mesh = SubResource("PlaneMesh_uon5r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0506616, -0.237553)
 script = ExtResource("10_avgx2")
 vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
-colors = [Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)]
 do_normals = null
 normals = [Vector3(0, 0.447214, 0.894427), Vector3(0, 0.447214, 0.894427), Vector3(0, 0.447214, 0.894427)]
 
@@ -188,7 +187,6 @@ normals = [Vector3(0, 1, 0), Vector3(0, 1, 0), Vector3(0, 1, 0)]
 transform = Transform3D(0.999991, 0.00369985, 0.00186427, -0.00393318, 0.70643, 0.707772, 0.00130168, -0.707773, 0.706439, 0.208699, 0.0340535, -0.137044)
 script = ExtResource("12_sfa1a")
 size = Vector2(0.1, 0.1)
-colors = [Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1), Color(1, 1, 1, 1)]
 
 [node name="Square3D2" type="Node3D" parent="3DObjects"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0.263545, 0.0340535, 0.149002)

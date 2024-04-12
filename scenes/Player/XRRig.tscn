@@ -27,12 +27,9 @@ radius = 0.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 cull_mask = 1048571
 
-[node name="MainCamera4D" type="Node3D" parent="XRCamera3D"]
+[node name="MainCamera4D" type="Node3D" parent="XRCamera3D" node_paths=PackedStringArray("right_controller")]
 script = ExtResource("1_giyyv")
-_position = Vector4(0, 0, 0, 0)
-_rotation_1 = Vector3(0, 0, 0)
-_rotation_2 = Vector3(0, 0, 0)
-_scale = Vector4(1, 1, 1, 1)
+right_controller = NodePath("../../RightController")
 
 [node name="LeftController" type="XRController3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
@@ -98,8 +95,9 @@ margin = 0.01
 max_results = 1
 collision_mask = 255
 
-[node name="MovementController" type="Node3D" parent="." node_paths=PackedStringArray("direct", "turn", "jump")]
+[node name="MovementController" type="Node3D" parent="." node_paths=PackedStringArray("direct", "turn", "jump", "camera")]
 script = ExtResource("9_sf2t3")
 direct = NodePath("../LeftController/MovementDirect")
 turn = NodePath("../RightController/MovementTurn")
 jump = NodePath("../RightController/MovementJump")
+camera = NodePath("../XRCamera3D/MainCamera4D")

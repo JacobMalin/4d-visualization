@@ -3,7 +3,7 @@
 class_name Space
 extends Node
 
-var normal : Vector4
+var normal : Vector4 = Vector4(0, 0, 0, 1)
 var e = 0;
 
 const EPSILON = 0.00001

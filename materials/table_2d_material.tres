@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b8waqfon6fjbl"]
+
+[ext_resource type="Shader" path="res://materials/y_shader.gdshader" id="1_ov0yt"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_ov0yt")
+shader_parameter/vertex_0 = null
+shader_parameter/vertex_1 = null
+shader_parameter/vertex_2 = null
+shader_parameter/normal = null
+shader_parameter/d = null
+shader_parameter/y_frustrum = null

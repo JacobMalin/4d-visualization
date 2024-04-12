@@ -1,20 +1,30 @@
 class_name Transform4D
 
-@export var position : Vector4 = Vector4.ZERO
-@export var rotation_1 : Vector3 = Vector3.ZERO
-@export var rotation_2 : Vector3 = Vector3.ZERO
-@export var scale : Vector4 = Vector4.ZERO
+@export var position : Vector4 = Vector4.ZERO : 
+	set(p) :
+		basis_changed = true
+		position = p
+@export var rotation_1 : Vector3 = Vector3.ZERO : 
+	set(r1) :
+		basis_changed = true
+		rotation_1 = r1
+@export var rotation_2 : Vector3 = Vector3.ZERO : 
+	set(r2) :
+		basis_changed = true
+		rotation_2 = r2
+@export var scale : Vector4 = Vector4.ZERO : 
+	set(s) :
+		basis_changed = true
+		scale = s
 
-var rotation_degrees_1 : Vector3 :
-	get: return rotation_1
-	set(rd): rotation_1 = rd
-var rotation_degrees_2 : Vector3 :
-	get: return rotation_2
-	set(rd): rotation_2 = rd
+var basis_changed = true
 
 var basis : Basis4D :
-	get: return Basis4D.newFromScaleAndRotation(scale, rotation_1, rotation_2)
-	set(b): push_error("Attempt to set basis: please stop.")
+	get:
+		if basis_changed:
+			basis = Basis4D.newFromScaleAndRotation(scale, rotation_1, rotation_2)
+
+		return basis
 var origin : Vector4 :
 	get: return position
 	set(p): position = p

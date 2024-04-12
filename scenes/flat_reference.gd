@@ -5,3 +5,5 @@ extends Node
 
 @export var show_3d = true
 @export var show_2d = true
+
+@export var y_frustrum = 0.1
