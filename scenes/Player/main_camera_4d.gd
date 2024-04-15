@@ -1,4 +1,3 @@
-@tool
 class_name MainCamera4D
 extends Node4D
 
@@ -36,6 +35,9 @@ func _physics_process(_delta):
 			   -(mouse_diff()).x * (abs((mouse_diff()).x) / 0.01) * dpi,
 				(mouse_diff()).y * (abs((mouse_diff()).y) / 0.01) * dpi,
 			)
+
+	HyperReference.camera_rot_2 = _global_rotation_2
+	HyperReference.camera_basis = _global_transform.basis
 
 	# Store previous mose pos
 	prev_mouse_pos = right_controller.global_position

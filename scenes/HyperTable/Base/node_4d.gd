@@ -3,9 +3,9 @@ class_name Node4D
 extends Node3D
 
 @export_group("Transform4D")
-@export var position_w = 0.0
-@export var rotation_2: Vector3 = Vector3.ZERO
-@export var scale_w = 1.0
+var position_w = 0.0
+var rotation_2: Vector3 = Vector3.ZERO
+var scale_w = 1.0
 
 @onready var parent = get_parent()
 @onready var parent_is_4d = parent and parent is Node4D
@@ -59,3 +59,40 @@ var _global_transform:
 	get:
 		return Transform4D.new(_global_position, _global_rotation_1,
 							   _global_rotation_2, _global_scale)
+
+
+func _get_property_list() -> Array[Dictionary]: ## Add hint to rotation and fix order
+	var props:Array[Dictionary] = []
+
+	props.push_back({
+		"name": "position_w",
+		"type": TYPE_FLOAT,
+		"usage": PROPERTY_USAGE_DEFAULT,
+	})
+
+	props.push_back({
+		"name": "rotation_2",
+		"type": TYPE_VECTOR3,
+		"hint": PROPERTY_HINT_RANGE,
+		"hint_string": "-360,360,0.1",
+	})
+
+	props.push_back({
+		"name": "scale_w",
+		"type": TYPE_FLOAT,
+		"hint": PROPERTY_HINT_LINK,
+	})
+
+	return props
+
+func _property_can_revert(_property):
+	return _property == "position_w" || _property == "rotation_2" || _property == "scale_w"
+
+func _property_get_revert(_property):
+	if _property == "position_w":
+		return 0
+	elif _property == "rotation_2":
+		return Vector3.ZERO
+	elif _property == "scale_w":
+		return 1
+	return null

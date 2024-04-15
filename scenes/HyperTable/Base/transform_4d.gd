@@ -23,6 +23,7 @@ var basis : Basis4D :
 	get:
 		if basis_changed:
 			basis = Basis4D.newFromScaleAndRotation(scale, rotation_1, rotation_2)
+			basis_changed = false
 
 		return basis
 var origin : Vector4 :

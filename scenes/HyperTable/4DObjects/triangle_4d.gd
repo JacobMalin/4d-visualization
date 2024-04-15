@@ -16,7 +16,7 @@ extends Node4D
 
 @onready var mesh_3d = MeshInstance3D.new()
 @onready var _mesh_3d = ImmediateMesh.new()
-@onready var _mat_3d = preload("res://materials/hyper_3d_material.tres").duplicate()
+@onready var _mat_3d = preload("res://materials/hyper_3d_material.tres")
 
 var uvs = [
 	Vector2(0, 1),
@@ -27,6 +27,7 @@ var uvs = [
 func _ready():
 	# Material
 	mesh_3d.material_override = _mat_3d
+	mesh_3d.extra_cull_margin = 10
 
 	# Add children
 	add_child(mesh_3d)
@@ -60,17 +61,15 @@ func draw():
 
 func draw_3d():	
 	# Shader
-	mesh_3d.material_override.set_shader_parameter("vertex_0", vertices[0])
-	mesh_3d.material_override.set_shader_parameter("vertex_1", vertices[1])
-	mesh_3d.material_override.set_shader_parameter("vertex_2", vertices[2])
+	mesh_3d.set_instance_shader_parameter("vertex_0", vertices[0])
+	mesh_3d.set_instance_shader_parameter("vertex_1", vertices[1])
+	mesh_3d.set_instance_shader_parameter("vertex_2", vertices[2])
 
-	mesh_3d.material_override.set_shader_parameter("normal", HyperReference.space.normal)
-	mesh_3d.material_override.set_shader_parameter("e", HyperReference.space.e)
+	var gtransform = _global_transform
+	var gtransform_basis = gtransform.basis
 
-	mesh_3d.material_override.set_shader_parameter("w_frustrum", HyperReference.w_frustrum)
-
-	mesh_3d.material_override.set_shader_parameter("origin", _global_transform.origin)
-	mesh_3d.material_override.set_shader_parameter("basis_x", _global_transform.basis.x)
-	mesh_3d.material_override.set_shader_parameter("basis_y", _global_transform.basis.y)
-	mesh_3d.material_override.set_shader_parameter("basis_z", _global_transform.basis.z)
-	mesh_3d.material_override.set_shader_parameter("basis_w", _global_transform.basis.w)
+	mesh_3d.set_instance_shader_parameter("origin", gtransform.origin)
+	mesh_3d.set_instance_shader_parameter("basis_x", gtransform_basis.x)
+	mesh_3d.set_instance_shader_parameter("basis_y", gtransform_basis.y)
+	mesh_3d.set_instance_shader_parameter("basis_z", gtransform_basis.z)
+	mesh_3d.set_instance_shader_parameter("basis_w", gtransform_basis.w)

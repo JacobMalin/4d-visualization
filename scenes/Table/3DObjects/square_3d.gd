@@ -5,12 +5,7 @@ extends Node3D
 @export var size : Vector2 = Vector2.ONE
 @export var center_offset : Vector3
 
-# @export var colors = [
-# 	Color(),
-# 	Color(),
-# 	Color(),
-# 	Color(),
-# ]
+@export var color = Color.BLACK
 
 @onready var triangles = [
 	Triangle3D.new(),
@@ -32,10 +27,10 @@ func _process(_delta):
 	# Triangle0 - top right
 	for i in range(3):
 		triangles[0].vertices[i] = vertices[i]
-		# triangles[0].colors[i] = colors[i]
+	triangles[0].color = color
 
 	# Triangle1 - bottom left
 	for i in range(3):
 		var j = (i + 2) % 4
 		triangles[1].vertices[i] = vertices[j]
-		# triangles[1].colors[i] = colors[j]
+	triangles[1].color = color

@@ -15,6 +15,7 @@ extends Camera3D
 var prev_mouse_pos
 
 const dpi = 5
+const LOCK_ANGLE = deg_to_rad(5) # Radians
 
 ## Lifecycle
 
@@ -44,6 +45,15 @@ func _physics_process(_delta):
 			global_rotation.x += (mouse_diff()).z * (abs((mouse_diff()).z) / 0.01) * dpi
 			global_rotation.y -= (mouse_diff()).x * (abs((mouse_diff()).x) / 0.01) * dpi
 			global_rotation.z += (mouse_diff()).y * (abs((mouse_diff()).y) / 0.01) * dpi
+
+			if global_rotation.x < -PI/2 + LOCK_ANGLE: global_rotation.x = -PI/2 + LOCK_ANGLE
+			if global_rotation.x > PI/2 - LOCK_ANGLE: global_rotation.x = PI/2 - LOCK_ANGLE
+
+			if global_rotation.z < -PI/2 + LOCK_ANGLE: global_rotation.z = -PI/2 + LOCK_ANGLE
+			if global_rotation.z > PI/2 - LOCK_ANGLE: global_rotation.z = PI/2 - LOCK_ANGLE
+
+	FlatReference.tiny_camera_rot = global_rotation
+	FlatReference.tiny_camera_transform = global_transform
 
 	# Store previous mose pos
 	prev_mouse_pos = right_controller.global_position
