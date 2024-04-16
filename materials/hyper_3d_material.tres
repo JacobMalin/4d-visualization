@@ -6,6 +6,12 @@
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_yg4cd")
-shader_parameter/normal = null
+shader_parameter/normal = Vector4(0, 0, 0, 1)
 shader_parameter/e = null
-shader_parameter/w_frustrum = null
+shader_parameter/w_frustrum = 1.0
+shader_parameter/camera_pos = Vector4(0, 1.7, 0, 0)
+shader_parameter/camera_rot_2 = null
+shader_parameter/camera_basis_x = Vector4(1, 0, 0, 0)
+shader_parameter/camera_basis_y = Vector4(0, 1, 0, 0)
+shader_parameter/camera_basis_z = Vector4(0, 0, 1, 0)
+shader_parameter/camera_basis_w = Vector4(0, 0, 0, 1)

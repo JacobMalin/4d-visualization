@@ -2,36 +2,37 @@ class_name Transform4D
 
 @export var position : Vector4 = Vector4.ZERO : 
 	set(p) :
-		basis_changed = true
 		position = p
 @export var rotation_1 : Vector3 = Vector3.ZERO : 
 	set(r1) :
-		basis_changed = true
-		rotation_1 = r1
+		if (rotation_1 != r1):
+			basis_changed = true
+			rotation_1 = r1
 @export var rotation_2 : Vector3 = Vector3.ZERO : 
 	set(r2) :
-		basis_changed = true
-		rotation_2 = r2
-@export var scale : Vector4 = Vector4.ZERO : 
+		if (rotation_2 != r2):
+			basis_changed = true
+			rotation_2 = r2
+@export var scale : Vector4 = Vector4.ONE : 
 	set(s) :
-		basis_changed = true
-		scale = s
+		if (scale != s):
+			basis_changed = true
+			scale = s
 
-var basis_changed = true
+var basis_changed = false
 
-var basis : Basis4D :
+var basis : Basis4D = Basis4D.newFromScaleAndRotation(scale, rotation_1, rotation_2) :
 	get:
 		if basis_changed:
 			basis = Basis4D.newFromScaleAndRotation(scale, rotation_1, rotation_2)
 			basis_changed = false
-
 		return basis
 var origin : Vector4 :
 	get: return position
 	set(p): position = p
 
-func _init(p_position = Vector4(0, 0, 0, 0), p_rotation_1 = Vector3(0, 0, 0), 
-		   p_rotation_2 = Vector3(0, 0, 0), p_scale = Vector4(1, 1, 1, 1)):
+func _init(p_position = Vector4.ZERO, p_rotation_1 = Vector3.ZERO, 
+		   p_rotation_2 = Vector3.ZERO, p_scale = Vector4.ONE):
 	position = p_position
 	rotation_1 = p_rotation_1
 	rotation_2 = p_rotation_2

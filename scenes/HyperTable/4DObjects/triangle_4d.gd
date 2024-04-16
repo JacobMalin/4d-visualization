@@ -50,16 +50,6 @@ func _ready():
 	mesh_3d.mesh = _mesh_3d
 
 func _process(_delta):
-	draw()
-
-	if Engine.is_editor_hint():
-		pass
-
-func draw():
-	# Draw mesh
-	draw_3d()
-
-func draw_3d():	
 	# Shader
 	mesh_3d.set_instance_shader_parameter("vertex_0", vertices[0])
 	mesh_3d.set_instance_shader_parameter("vertex_1", vertices[1])

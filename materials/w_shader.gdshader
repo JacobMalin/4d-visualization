@@ -132,5 +132,5 @@ void fragment() {
 	alpha = 1.0 - clamp(abs(dist) / w_frustrum, 0, 1);
 	
 	ALPHA = alpha;
-	ALBEDO = vec3(0, 0, 0);
+	ALBEDO = vec3(0.0);
 }

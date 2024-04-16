@@ -55,10 +55,14 @@ var _global_scale:
 		return Vector4(scale.x, scale.y, scale.z, _global_scale_w)
 
 @warning_ignore("unused_private_class_variable")
-var _global_transform:
+var _global_transform = Transform4D.new() :
 	get:
-		return Transform4D.new(_global_position, _global_rotation_1,
-							   _global_rotation_2, _global_scale)
+		_global_transform.position = _global_position
+		_global_transform.rotation_1 = _global_rotation_1
+		_global_transform.rotation_2 = _global_rotation_2
+		_global_transform.scale = _global_scale
+
+		return _global_transform
 
 
 func _get_property_list() -> Array[Dictionary]: ## Add hint to rotation and fix order
@@ -90,9 +94,9 @@ func _property_can_revert(_property):
 
 func _property_get_revert(_property):
 	if _property == "position_w":
-		return 0
+		return 0.0
 	elif _property == "rotation_2":
 		return Vector3.ZERO
 	elif _property == "scale_w":
-		return 1
+		return 1.0
 	return null

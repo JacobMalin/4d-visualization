@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwfmn7vqp1r2j"]
+[gd_scene load_steps=9 format=3 uid="uid://cwfmn7vqp1r2j"]
 
 [ext_resource type="Material" uid="uid://dhjl7tuucybyj" path="res://scenes/HyperTable/grass.tres" id="1_kaqb4"]
 [ext_resource type="Script" path="res://scenes/HyperTable/Base/node_4d.gd" id="2_538e2"]
 [ext_resource type="Script" path="res://scenes/HyperTable/4DObjects/triangle_4d.gd" id="3_2ai6j"]
-[ext_resource type="Script" path="res://scenes/HyperTable/4DObjects/square_4d.gd" id="4_lpudp"]
+[ext_resource type="Script" path="res://scenes/HyperTable/4DObjects/rect_4d.gd" id="4_g1fn3"]
 [ext_resource type="Script" path="res://scenes/HyperTable/4DObjects/box_4d.gd" id="5_wkgg1"]
+[ext_resource type="Script" path="res://scenes/HyperTable/4DObjects/hyper_box_4d.gd" id="6_76g07"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hjah1"]
 size = Vector2(100, 100)
@@ -23,9 +24,9 @@ shape = SubResource("WorldBoundaryShape3D_uvf7b")
 
 [node name="4DObjects" type="Node3D" parent="."]
 script = ExtResource("2_538e2")
-position_w = 0
+position_w = 0.0
 rotation_2 = Vector3(0, 0, 0)
-scale_w = 1
+scale_w = 1.0
 
 [node name="Triangle4D" type="Node3D" parent="4DObjects"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 0)
@@ -35,96 +36,134 @@ position_w = 0
 rotation_2 = Vector3(0, 0, 90)
 scale_w = 1
 
-[node name="Square Array" type="Node3D" parent="4DObjects"]
+[node name="Rect Array" type="Node3D" parent="4DObjects"]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 3.4, 1.69616, 3.4)
 script = ExtResource("2_538e2")
-position_w = 0
+position_w = 0.0
 rotation_2 = Vector3(0, 0, 0)
-scale_w = 1
+scale_w = 1.0
 
-[node name="Row1" type="Node3D" parent="4DObjects/Square Array"]
+[node name="Row1" type="Node3D" parent="4DObjects/Rect Array"]
 script = ExtResource("2_538e2")
-position_w = 0
+position_w = 0.0
 rotation_2 = Vector3(0, 0, 0)
-scale_w = 1
+scale_w = 1.0
 
-[node name="Square4D" type="Node3D" parent="4DObjects/Square Array/Row1"]
+[node name="Rect4D" type="Node3D" parent="4DObjects/Rect Array/Row1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
-script = ExtResource("4_lpudp")
-position_w = 0
+script = ExtResource("4_g1fn3")
+position_w = 0.0
 rotation_2 = Vector3(0, 90, 0)
-scale_w = 1
+scale_w = 1.0
 
-[node name="Square4D2" type="Node3D" parent="4DObjects/Square Array/Row1"]
-script = ExtResource("4_lpudp")
-position_w = 0
+[node name="Rect4D2" type="Node3D" parent="4DObjects/Rect Array/Row1"]
+script = ExtResource("4_g1fn3")
+position_w = 0.0
 rotation_2 = Vector3(0, 45, 0)
-scale_w = 1
+scale_w = 1.0
 
-[node name="Square4D3" type="Node3D" parent="4DObjects/Square Array/Row1"]
+[node name="Rect4D3" type="Node3D" parent="4DObjects/Rect Array/Row1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
-script = ExtResource("4_lpudp")
-position_w = 0
+script = ExtResource("4_g1fn3")
+position_w = 0.0
 rotation_2 = Vector3(0, 0, 0)
-scale_w = 1
+scale_w = 1.0
 
-[node name="Row2" type="Node3D" parent="4DObjects/Square Array"]
+[node name="Row2" type="Node3D" parent="4DObjects/Rect Array"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 1.5, 0)
 script = ExtResource("2_538e2")
 position_w = 0.0
 rotation_2 = Vector3(0, 0, 0)
 scale_w = 1.0
 
-[node name="Square4D" type="Node3D" parent="4DObjects/Square Array/Row2"]
+[node name="Rect4D" type="Node3D" parent="4DObjects/Rect Array/Row2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
-script = ExtResource("4_lpudp")
+script = ExtResource("4_g1fn3")
 position_w = 0.0
 rotation_2 = Vector3(0, 90, 0)
 scale_w = 1.0
 
-[node name="Square4D2" type="Node3D" parent="4DObjects/Square Array/Row2"]
-script = ExtResource("4_lpudp")
+[node name="Rect4D2" type="Node3D" parent="4DObjects/Rect Array/Row2"]
+script = ExtResource("4_g1fn3")
 position_w = 0.0
 rotation_2 = Vector3(0, 45, 0)
 scale_w = 1.0
 
-[node name="Square4D3" type="Node3D" parent="4DObjects/Square Array/Row2"]
+[node name="Rect4D3" type="Node3D" parent="4DObjects/Rect Array/Row2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
-script = ExtResource("4_lpudp")
+script = ExtResource("4_g1fn3")
 position_w = 0.0
 rotation_2 = Vector3(0, 0, 0)
 scale_w = 1.0
 
-[node name="Row3" type="Node3D" parent="4DObjects/Square Array"]
+[node name="Row3" type="Node3D" parent="4DObjects/Rect Array"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3, 0)
 script = ExtResource("2_538e2")
 position_w = 0.0
 rotation_2 = Vector3(0, 0, 0)
 scale_w = 1.0
 
-[node name="Square4D" type="Node3D" parent="4DObjects/Square Array/Row3"]
+[node name="Rect4D" type="Node3D" parent="4DObjects/Rect Array/Row3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
-script = ExtResource("4_lpudp")
+script = ExtResource("4_g1fn3")
 position_w = 0.0
 rotation_2 = Vector3(0, 90, 0)
 scale_w = 1.0
 
-[node name="Square4D2" type="Node3D" parent="4DObjects/Square Array/Row3"]
-script = ExtResource("4_lpudp")
+[node name="Rect4D2" type="Node3D" parent="4DObjects/Rect Array/Row3"]
+script = ExtResource("4_g1fn3")
 position_w = 0.0
 rotation_2 = Vector3(0, 45, 0)
 scale_w = 1.0
 
-[node name="Square4D3" type="Node3D" parent="4DObjects/Square Array/Row3"]
+[node name="Rect4D3" type="Node3D" parent="4DObjects/Rect Array/Row3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
-script = ExtResource("4_lpudp")
+script = ExtResource("4_g1fn3")
 position_w = 0.0
 rotation_2 = Vector3(0, 0, 0)
 scale_w = 1.0
 
 [node name="Box4D" type="Node3D" parent="4DObjects"]
-transform = Transform3D(-0.99863, 0, -0.0523361, 0, 1, 0, 0.0523361, 0, -0.99863, 0.14, 1.714, 5.095)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, 1.714, 5.095)
 script = ExtResource("5_wkgg1")
-position_w = 0
+position_w = 0.0
 rotation_2 = Vector3(0, 0, 0)
-scale_w = 1
+scale_w = 1.0
+
+[node name="FakeHyperBox" type="Node3D" parent="4DObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34151, 0)
+visible = false
+script = ExtResource("2_538e2")
+position_w = 0.0
+rotation_2 = Vector3(0, 0, 0)
+scale_w = 1.0
+
+[node name="Box4D" type="Node3D" parent="4DObjects/FakeHyperBox"]
+visible = false
+script = ExtResource("5_wkgg1")
+center_offset = Vector4(0, 0, 0, 0.5)
+position_w = 0.0
+rotation_2 = Vector3(0, 0, 0)
+scale_w = 1.0
+
+[node name="Box4D2" type="Node3D" parent="4DObjects/FakeHyperBox"]
+visible = false
+script = ExtResource("5_wkgg1")
+center_offset = Vector4(0, 0, 0, 0.5)
+position_w = 0.0
+rotation_2 = Vector3(180, 0, 0)
+scale_w = 1.0
+
+[node name="Box4D3" type="Node3D" parent="4DObjects/FakeHyperBox"]
+script = ExtResource("5_wkgg1")
+center_offset = Vector4(0, 0, 0, 0.5)
+position_w = 0.0
+rotation_2 = Vector3(0, 0, 0)
+scale_w = 1.0
+
+[node name="HyperBox4D" type="Node3D" parent="4DObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.29541, 0)
+script = ExtResource("6_76g07")
+position_w = 0.0
+rotation_2 = Vector3(0, 0, 0)
+scale_w = 1.0

@@ -25,45 +25,45 @@ static func newFromScale(scale):
 
 static func newFromRotation(rot_1, rot_2):
 	# Rotation Order : xy, yz, zx, xw, yw, zw
-	# Rotation matrices taken from https://doi.org/10.1007/11919476_24
-	var Rxy = Basis4D.new(
-		Vector4(cos_deg(rot_1.x), -sin_deg(rot_1.x), 0, 0),
-		Vector4(sin_deg(rot_1.x), cos_deg(rot_1.x), 0, 0),
+	# Rotation matrices taken from https://scholarworks.iu.edu/dspace/bitstream/2022/8477/1/Zhang_indiana_0093A_10088.pdf
+	var Rzw = Basis4D.new(
+		Vector4(cos_deg(rot_1.z), -sin_deg(rot_1.z), 0, 0),
+		Vector4(sin_deg(rot_1.z), cos_deg(rot_1.z), 0, 0),
 		Vector4(0, 0, 1, 0),
-		Vector4(0, 0, 0, 1),
-	)
-	var Ryz = Basis4D.new(
-		Vector4(1, 0, 0, 0),
-		Vector4(0, cos_deg(rot_1.y), -sin_deg(rot_1.y), 0),
-		Vector4(0, sin_deg(rot_1.y), cos_deg(rot_1.y), 0),
-		Vector4(0, 0, 0, 1),
-	)
-	var Rzx = Basis4D.new(
-		Vector4(cos_deg(rot_1.z), 0, sin_deg(rot_1.z), 0),
-		Vector4(0, 1, 0, 0),
-		Vector4(-sin_deg(rot_1.z), 0, cos_deg(rot_1.z), 0),
 		Vector4(0, 0, 0, 1),
 	)
 	var Rxw = Basis4D.new(
-		Vector4(cos_deg(rot_2.x), 0, 0, sin_deg(rot_2.x)),
-		Vector4(0, 1, 0, 0),
-		Vector4(0, 0, 1, 0),
-		Vector4(-sin_deg(rot_2.x), 0, 0, cos_deg(rot_2.x)),
+		Vector4(1, 0, 0, 0),
+		Vector4(0, cos_deg(rot_1.x), -sin_deg(rot_1.x), 0),
+		Vector4(0, sin_deg(rot_1.x), cos_deg(rot_1.x), 0),
+		Vector4(0, 0, 0, 1),
 	)
 	var Ryw = Basis4D.new(
-		Vector4(1, 0, 0, 0),
-		Vector4(0, cos_deg(rot_2.y), 0, sin_deg(rot_2.y)),
-		Vector4(0, 0, 1, 0),
-		Vector4(0, -sin_deg(rot_2.y), 0, cos_deg(rot_2.y)),
+		Vector4(cos_deg(rot_1.y), 0, sin_deg(rot_1.y), 0),
+		Vector4(0, 1, 0, 0),
+		Vector4(-sin_deg(rot_1.y), 0, cos_deg(rot_1.y), 0),
+		Vector4(0, 0, 0, 1),
 	)
-	var Rzw = Basis4D.new(
+	var Rxy = Basis4D.new(
 		Vector4(1, 0, 0, 0),
 		Vector4(0, 1, 0, 0),
 		Vector4(0, 0, cos_deg(rot_2.z), sin_deg(rot_2.z)),
 		Vector4(0, 0, -sin_deg(rot_2.z), cos_deg(rot_2.z)),
 	)
+	var Ryz = Basis4D.new(
+		Vector4(cos_deg(rot_2.x), 0, 0, sin_deg(rot_2.x)),
+		Vector4(0, 1, 0, 0),
+		Vector4(0, 0, 1, 0),
+		Vector4(-sin_deg(rot_2.x), 0, 0, cos_deg(rot_2.x)),
+	)
+	var Rzx = Basis4D.new(
+		Vector4(1, 0, 0, 0),
+		Vector4(0, cos_deg(rot_2.y), 0, sin_deg(rot_2.y)),
+		Vector4(0, 0, 1, 0),
+		Vector4(0, -sin_deg(rot_2.y), 0, cos_deg(rot_2.y)),
+	)
 
-	return Rxy.mul(Ryz).mul(Rzx).mul(Rxw).mul(Ryw).mul(Rzw)
+	return Rzx.mul(Ryz).mul(Rxy).mul(Ryw).mul(Rxw).mul(Rzw)
 
 # Helper
 

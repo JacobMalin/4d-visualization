@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://driat2fkek0k4" path="res://scenes/Table/Buttons/disable_button.tscn" id="10_n0ncg"]
 [ext_resource type="PackedScene" uid="uid://djk85u1gops8n" path="res://scenes/Table/Buttons/reset_button.tscn" id="10_nrcww"]
 [ext_resource type="PackedScene" uid="uid://dphqhvwoot1w5" path="res://scenes/Table/Buttons/shift_button.tscn" id="11_oc4c7"]
-[ext_resource type="Script" path="res://scenes/Table/3DObjects/square_3d.gd" id="12_sfa1a"]
+[ext_resource type="Script" path="res://scenes/Table/3DObjects/rect_3d.gd" id="12_sfa1a"]
 [ext_resource type="Script" path="res://scenes/Table/3DObjects/box_3d.gd" id="13_ouihp"]
 [ext_resource type="Script" path="res://scenes/Table/3DObjects/torus_3d.gd" id="16_pmtoq"]
 
@@ -183,17 +183,17 @@ vertices = [Vector3(-0.05, 0, 0), Vector3(-0.05, 0, -0.05), Vector3(0.05, 0, 0)]
 do_normals = null
 normals = [Vector3(0, 1, 0), Vector3(0, 1, 0), Vector3(0, 1, 0)]
 
-[node name="Square3D" type="Node3D" parent="3DObjects"]
+[node name="Rect3D" type="Node3D" parent="3DObjects"]
 transform = Transform3D(0.999991, 0.00369985, 0.00186427, -0.00393318, 0.70643, 0.707772, 0.00130168, -0.707773, 0.706439, 0.208699, 0.0340535, -0.137044)
 script = ExtResource("12_sfa1a")
 size = Vector2(0.1, 0.1)
 
-[node name="Square3D2" type="Node3D" parent="3DObjects"]
+[node name="Rect3D2" type="Node3D" parent="3DObjects"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0.263545, 0.0340535, 0.149002)
 script = ExtResource("12_sfa1a")
 size = Vector2(0.1, 0.1)
 
-[node name="Square3D3" type="Node3D" parent="3DObjects"]
+[node name="Rect3D3" type="Node3D" parent="3DObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263747, 0.110774, 0.293565)
 script = ExtResource("12_sfa1a")
 size = Vector2(0.1, 0.1)
@@ -246,5 +246,10 @@ color = Color(0, 0, 0.784314, 1)
 script = ExtResource("13_ouihp")
 size = Vector3(0.006, 0.006, 0.006)
 color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="Box3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.765867, 0)
+visible = false
+script = ExtResource("13_ouihp")
 
 [editable path="Buttons/2DDisableButton"]

@@ -1,11 +1,20 @@
 @tool
-class_name Square3D
+class_name Rect3D
 extends Node3D
 
-@export var size : Vector2 = Vector2.ONE
-@export var center_offset : Vector3
+@export var size : Vector2 = Vector2.ONE : 
+	set(s):
+		size = s
+		update_triangles.call_deferred()
+@export var center_offset : Vector3 : 
+	set(co):
+		center_offset = co
+		update_triangles.call_deferred()
 
-@export var color = Color.BLACK
+@export var color = Color.BLACK : 
+	set(c):
+		color = c
+		update_triangles.call_deferred()
 
 @onready var triangles = [
 	Triangle3D.new(),
@@ -16,7 +25,9 @@ func _ready():
 	add_child(triangles[0])
 	add_child(triangles[1])
 
-func _process(_delta):
+	update_triangles()
+
+func update_triangles():
 	var vertices = [
 		center_offset - size.x * Vector3.RIGHT / 2 + size.y * Vector3.UP / 2,
 		center_offset + size.x * Vector3.RIGHT / 2 + size.y * Vector3.UP / 2,
