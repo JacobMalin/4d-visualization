@@ -27,7 +27,8 @@ var uvs = [
 func _ready():
 	# Material
 	mesh_3d.material_override = _mat_3d
-	mesh_3d.extra_cull_margin = 10
+	mesh_3d.extra_cull_margin = 100000
+	mesh_3d.top_level = true
 
 	# Add children
 	add_child(mesh_3d)
@@ -63,3 +64,6 @@ func _process(_delta):
 	mesh_3d.set_instance_shader_parameter("basis_y", gtransform_basis.y)
 	mesh_3d.set_instance_shader_parameter("basis_z", gtransform_basis.z)
 	mesh_3d.set_instance_shader_parameter("basis_w", gtransform_basis.w)
+
+	var gver = gtransform_basis.xform(vertices[1]) + gtransform.origin
+	print(gver)

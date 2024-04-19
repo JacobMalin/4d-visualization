@@ -44,6 +44,12 @@ func mul(p_vector):
 
 	return _basis.xform(p_vector) + _origin
 
+func mul_transform(_other):
+	var t = Transform4D.new()
+	t.origin = basis.xform(_other.origin)
+	t.basis = basis.mul(_other.basis)
+	return t
+
 func mul_affine_inverse(p_vector):
 	var _basis = basis.inverse()
 	var _origin = _basis.xform(-origin)
