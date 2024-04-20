@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwfmn7vqp1r2j"]
 
 [ext_resource type="Material" uid="uid://dhjl7tuucybyj" path="res://scenes/HyperTable/grass.tres" id="1_kaqb4"]
-[ext_resource type="Script" path="res://scenes/HyperTable/4DObjects/triangle_4d.gd" id="3_2ai6j"]
-[ext_resource type="Script" path="res://scenes/HyperTable/Base/node_4d.gd" id="3_mfjkj"]
+[ext_resource type="Script" path="res://scenes/HyperTable/4DObjects/box_4d.gd" id="2_otxi7"]
+[ext_resource type="Script" path="res://scenes/HyperTable/Base/node_4d.gd" id="5_7nl70"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hjah1"]
 size = Vector2(100, 100)
@@ -20,15 +20,15 @@ skeleton = NodePath("../..")
 shape = SubResource("WorldBoundaryShape3D_uvf7b")
 
 [node name="Node4D" type="Node3D" parent="."]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 1, 1, 0)
-script = ExtResource("3_mfjkj")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+script = ExtResource("5_7nl70")
 position_w = 0.0
-rotation_2 = Vector3(0, 0, 0)
+rotation_2 = Vector3(69.7, 0, 0)
 scale_w = 1.0
 
-[node name="Triangle4D" type="Node3D" parent="Node4D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
-script = ExtResource("3_2ai6j")
+[node name="Box4D" type="Node3D" parent="Node4D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0588311, 1.11797, 0)
+script = ExtResource("2_otxi7")
 position_w = 0.0
 rotation_2 = Vector3(0, 0, 0)
 scale_w = 1.0

@@ -22,6 +22,8 @@ extends Node4D
 ]
 
 func _ready():
+	super._ready()
+
 	for box in boxes:
 		add_child(box)
 
@@ -65,3 +67,6 @@ func update_boxes():
 
 	scale = Vector3.ONE
 	scale_w = 1.0
+
+	# for box in boxes:
+	# 	box.id = id

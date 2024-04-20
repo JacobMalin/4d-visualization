@@ -24,6 +24,8 @@ extends Node4D
 ]
 
 func _ready():
+	super._ready()
+	
 	add_child(triangles[0])
 	add_child(triangles[1])
 
@@ -50,3 +52,6 @@ func update_triangles():
 
 	scale = Vector3.ONE
 	scale_w = 1.0
+
+	triangles[0].id = id
+	triangles[1].id = id

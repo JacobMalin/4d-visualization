@@ -69,49 +69,49 @@ void vertex() {
 	mat4 matrix_basis = mat4(1);
 	vec4 matrix_origin = vec4(0);
 	
-	//mat4 camera_basis = mat4(camera_basis_x, camera_basis_y, camera_basis_z, camera_basis_w);
-	//vec4 camera_origin = camera_pos;
-	//// translated
-	//matrix_origin -= camera_pos;
-	//// localed
-	//matrix_origin = xform(matrix_basis, camera_origin) + matrix_origin;
-	//matrix_basis *= camera_basis;
-	//// rotated_local zw
-	//mat4 zw_basis = mat4(
-		//vec4(1,0,0,0),
-		//vec4(0,1,0,0),
-		//vec4(0, 0, cos(radians(camera_rot_2.z)), sin(radians(camera_rot_2.z))),
-		//vec4(0, 0, -sin(radians(camera_rot_2.z)), cos(radians(camera_rot_2.z)))
-	//);
-	//matrix_basis = matrix_basis * zw_basis;
-	//// rotated_local xw
-	//mat4 xw_basis = mat4(
-		//vec4(cos(radians(camera_rot_2.x)), 0, 0, sin(radians(camera_rot_2.x))),
-		//vec4(0,1,0,0),
-		//vec4(0,0,1,0),
-		//vec4(-sin(radians(camera_rot_2.x)), 0, 0, cos(radians(camera_rot_2.x)))
-	//);
-	//matrix_basis = matrix_basis * xw_basis;
-	//// rotated_local yw
-	//mat4 yw_basis = mat4(
-		//vec4(1,0,0,0),
-		//vec4(0, cos(radians(camera_rot_2.y)), 0, sin(radians(camera_rot_2.y))),
-		//vec4(0,0,1,0),
-		//vec4(0, -sin(radians(camera_rot_2.y)), 0, cos(radians(camera_rot_2.y)))
-	//);
-	//matrix_basis = matrix_basis * yw_basis;
-	//// un-localed
-	//mat4 inverse_camera_basis = inverse(camera_basis);
-	//vec4 invserse_camera_origin = xform(inverse_camera_basis, -camera_origin);
-	//matrix_origin = xform(matrix_basis, invserse_camera_origin) + matrix_origin;
-	//matrix_basis *= inverse_camera_basis;
-	//// un-translated
-	//matrix_origin += camera_pos;
-	//// invert
-	//matrix_basis = inverse(matrix_basis);
-	//matrix_origin = xform(matrix_basis, -matrix_origin);
-	//
-	//vertex = xform(matrix_basis, vertex) + matrix_origin;
+	mat4 camera_basis = mat4(camera_basis_x, camera_basis_y, camera_basis_z, camera_basis_w);
+	vec4 camera_origin = camera_pos;
+	// translated
+	matrix_origin -= camera_pos;
+	// localed
+	matrix_origin = xform(matrix_basis, camera_origin) + matrix_origin;
+	matrix_basis *= camera_basis;
+	// rotated_local zw
+	mat4 zw_basis = mat4(
+		vec4(1,0,0,0),
+		vec4(0,1,0,0),
+		vec4(0, 0, cos(radians(camera_rot_2.z)), sin(radians(camera_rot_2.z))),
+		vec4(0, 0, -sin(radians(camera_rot_2.z)), cos(radians(camera_rot_2.z)))
+	);
+	matrix_basis = matrix_basis * zw_basis;
+	// rotated_local xw
+	mat4 xw_basis = mat4(
+		vec4(cos(radians(camera_rot_2.x)), 0, 0, sin(radians(camera_rot_2.x))),
+		vec4(0,1,0,0),
+		vec4(0,0,1,0),
+		vec4(-sin(radians(camera_rot_2.x)), 0, 0, cos(radians(camera_rot_2.x)))
+	);
+	matrix_basis = matrix_basis * xw_basis;
+	// rotated_local yw
+	mat4 yw_basis = mat4(
+		vec4(1,0,0,0),
+		vec4(0, cos(radians(camera_rot_2.y)), 0, sin(radians(camera_rot_2.y))),
+		vec4(0,0,1,0),
+		vec4(0, -sin(radians(camera_rot_2.y)), 0, cos(radians(camera_rot_2.y)))
+	);
+	matrix_basis = matrix_basis * yw_basis;
+	// un-localed
+	mat4 inverse_camera_basis = inverse(camera_basis);
+	vec4 invserse_camera_origin = xform(inverse_camera_basis, -camera_origin);
+	matrix_origin = xform(matrix_basis, invserse_camera_origin) + matrix_origin;
+	matrix_basis *= inverse_camera_basis;
+	// un-translated
+	matrix_origin += camera_pos;
+	// invert
+	matrix_basis = inverse(matrix_basis);
+	matrix_origin = xform(matrix_basis, -matrix_origin);
+	
+	vertex = xform(matrix_basis, vertex) + matrix_origin;
 	
 	VERTEX = vertex.xyz;
 }
@@ -135,5 +135,5 @@ void fragment() {
 	
 	ALPHA = alpha;
 	ALBEDO = vec3(0);
-	if (point.w > 0.) ALBEDO = vec3(1,0,0);
+	//if (point.w > 0.) ALBEDO = vec3(1,0,0);
 }

@@ -14,6 +14,8 @@ const dpi = 5
 ## Lifecycle
 
 func _ready():
+	super._ready()
+
 	if Engine.is_editor_hint(): return
 
 	prev_mouse_pos = right_controller.global_position
@@ -21,6 +23,7 @@ func _ready():
 
 func _physics_process(_delta):
 	# Store space eq
+	calc_global_transform()
 	var global_normal = _global_transform.basis.w
 	HyperReference.space = Space.newFromPoint(global_normal, _global_position)
 	HyperReference.camera_pos = _global_position
@@ -31,9 +34,9 @@ func _physics_process(_delta):
 		# Rotate camera
 		if is_mousepad():
 			_global_rotation_2 = _global_rotation_2 + Vector3(
-				(mouse_diff()).z * (abs((mouse_diff()).z) / 0.01) * dpi,
 			   -(mouse_diff()).x * (abs((mouse_diff()).x) / 0.01) * dpi,
 				(mouse_diff()).y * (abs((mouse_diff()).y) / 0.01) * dpi,
+				(mouse_diff()).z * (abs((mouse_diff()).z) / 0.01) * dpi,
 			)
 
 	HyperReference.camera_rot_2 = _global_rotation_2

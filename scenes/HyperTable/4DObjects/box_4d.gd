@@ -23,6 +23,8 @@ extends Node4D
 ]
 
 func _ready():
+	super._ready()
+	
 	for rect in rects:
 		add_child(rect)
 
@@ -84,3 +86,6 @@ func update_rects():
 
 	scale = Vector3.ONE
 	scale_w = 1.0
+
+	for rect in rects:
+		rect.id = id

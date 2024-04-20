@@ -26,45 +26,97 @@ static func newFromScale(scale):
 static func newFromRotation(rot_1, rot_2):
 	# Rotation Order : zw,xw,yw,xy,yz,zx
 	# Rotation matrices taken from https://scholarworks.iu.edu/dspace/bitstream/2022/8477/1/Zhang_indiana_0093A_10088.pdf
-	var Rxy = Basis4D.new(
-		Vector4(cos_deg(rot_1.z), -sin_deg(rot_1.z), 0, 0),
-		Vector4(sin_deg(rot_1.z), cos_deg(rot_1.z), 0, 0),
-		Vector4(0, 0, 1, 0),
-		Vector4(0, 0, 0, 1),
-	)
-	var Ryz = Basis4D.new(
-		Vector4(1, 0, 0, 0),
-		Vector4(0, cos_deg(rot_1.x), -sin_deg(rot_1.x), 0),
-		Vector4(0, sin_deg(rot_1.x), cos_deg(rot_1.x), 0),
-		Vector4(0, 0, 0, 1),
-	)
-	var Rzx = Basis4D.new(
-		Vector4(cos_deg(rot_1.y), 0, sin_deg(rot_1.y), 0),
-		Vector4(0, 1, 0, 0),
-		Vector4(-sin_deg(rot_1.y), 0, cos_deg(rot_1.y), 0),
-		Vector4(0, 0, 0, 1),
-	)
-	var Rzw = Basis4D.new(
-		Vector4(1, 0, 0, 0),
-		Vector4(0, 1, 0, 0),
-		Vector4(0, 0, cos_deg(rot_2.z), sin_deg(rot_2.z)),
-		Vector4(0, 0, -sin_deg(rot_2.z), cos_deg(rot_2.z)),
-	)
-	var Rxw = Basis4D.new(
-		Vector4(cos_deg(rot_2.x), 0, 0, sin_deg(rot_2.x)),
-		Vector4(0, 1, 0, 0),
-		Vector4(0, 0, 1, 0),
-		Vector4(-sin_deg(rot_2.x), 0, 0, cos_deg(rot_2.x)),
-	)
-	var Ryw = Basis4D.new(
-		Vector4(1, 0, 0, 0),
-		Vector4(0, cos_deg(rot_2.y), 0, sin_deg(rot_2.y)),
-		Vector4(0, 0, 1, 0),
-		Vector4(0, -sin_deg(rot_2.y), 0, cos_deg(rot_2.y)),
-	)
+	# var Rxy = Basis4D.new(
+	# 	Vector4(cos_deg(rot_1.z), -sin_deg(rot_1.z), 0, 0),
+	# 	Vector4(sin_deg(rot_1.z), cos_deg(rot_1.z), 0, 0),
+	# 	Vector4(0, 0, 1, 0),
+	# 	Vector4(0, 0, 0, 1),
+	# )
+	# var Ryz = Basis4D.new(
+	# 	Vector4(1, 0, 0, 0),
+	# 	Vector4(0, cos_deg(rot_1.x), -sin_deg(rot_1.x), 0),
+	# 	Vector4(0, sin_deg(rot_1.x), cos_deg(rot_1.x), 0),
+	# 	Vector4(0, 0, 0, 1),
+	# )
+	# var Rzx = Basis4D.new(
+	# 	Vector4(cos_deg(rot_1.y), 0, sin_deg(rot_1.y), 0),
+	# 	Vector4(0, 1, 0, 0),
+	# 	Vector4(-sin_deg(rot_1.y), 0, cos_deg(rot_1.y), 0),
+	# 	Vector4(0, 0, 0, 1),
+	# )
+	# var Rzw = Basis4D.new(
+	# 	Vector4(1, 0, 0, 0),
+	# 	Vector4(0, 1, 0, 0),
+	# 	Vector4(0, 0, cos_deg(rot_2.z), sin_deg(rot_2.z)),
+	# 	Vector4(0, 0, -sin_deg(rot_2.z), cos_deg(rot_2.z)),
+	# )
+	# var Rxw = Basis4D.new(
+	# 	Vector4(cos_deg(rot_2.x), 0, 0, sin_deg(rot_2.x)),
+	# 	Vector4(0, 1, 0, 0),
+	# 	Vector4(0, 0, 1, 0),
+	# 	Vector4(-sin_deg(rot_2.x), 0, 0, cos_deg(rot_2.x)),
+	# )
+	# var Ryw = Basis4D.new(
+	# 	Vector4(1, 0, 0, 0),
+	# 	Vector4(0, cos_deg(rot_2.y), 0, sin_deg(rot_2.y)),
+	# 	Vector4(0, 0, 1, 0),
+	# 	Vector4(0, -sin_deg(rot_2.y), 0, cos_deg(rot_2.y)),
+	# )
 
-	return Rzw.mul(Rxw).mul(Ryw).mul(Rzx).mul(Ryz).mul(Rxy)
-	# return Rzx.mul(Ryz).mul(Rxy).mul(Rzw).mul(Rxw).mul(Ryw)
+	# return Rzw.mul(Rxw).mul(Ryw).mul(Rzx).mul(Ryz).mul(Rxy)
+
+	var sx = sin_deg(rot_2.x)
+	var sy = sin_deg(rot_2.y)
+	var sz = sin_deg(rot_2.z)
+	var sa = sin_deg(rot_1.x)
+	var sb = sin_deg(rot_1.y)
+	var sg = sin_deg(rot_1.z)
+
+	var cx = cos_deg(rot_2.x)
+	var cy = cos_deg(rot_2.y)
+	var cz = cos_deg(rot_2.z)
+	var ca = cos_deg(rot_1.x)
+	var cb = cos_deg(rot_1.y)
+	var cg = cos_deg(rot_1.z)
+
+	var sasbcxcasxsy = sa * sb * cx - ca * sx * sy
+	var cacxsy = ca * cx * sy
+	var sacxsy = sa * cx * sy
+
+	var cbczsbsxsz = cb * cz - sb * sx * sz
+	var cbsxszsbcz = -cb * sx * sz - sb * cz
+	var sacbczsbsxszcacxsysz = sa * cbczsbsxsz - cacxsy * sz
+
+	var sbsxczcbsz = -sb * sx * cz - cb * sz
+	var sbszcbsxcz = sb * sz - cb * sx * cz
+	var sasbsxczcbszcacxsycz = sa * sbsxczcbsz - cacxsy * cz
+
+	return Basis4D.new(
+		Vector4(
+			sg * sasbcxcasxsy + cg * cb * cx,
+			cg * sasbcxcasxsy - sg * cb * cx,
+			ca * sb * cx + sa * sx * sy,
+			sx * cy,
+		),
+		Vector4(
+			sg * ca * cy,
+			cg * ca * cy,
+			sa * -cy,
+			sy,
+		),
+		Vector4(
+			sg * sacbczsbsxszcacxsysz + cg * cbsxszsbcz,
+			cg * sacbczsbsxszcacxsysz - sg * cbsxszsbcz,
+			sacxsy * sz + ca * cbczsbsxsz,
+			cx * cy * sz,
+		),
+		Vector4(
+			sg * sasbsxczcbszcacxsycz + cg * sbszcbsxcz,
+			cg * sasbsxczcbszcacxsycz - sg * sbszcbsxcz,
+			sacxsy * cz + ca * sbsxczcbsz,
+			cx * cy * cz,
+		),
+	)
 
 # Helper
 

@@ -19,14 +19,17 @@ var _global_position_w:
 
 		return global_position_w
 
+@warning_ignore("unused_private_class_variable")
 var _global_position:
 	get:
 		return Vector4(global_position.x, global_position.y, global_position.z, _global_position_w)
 
+@warning_ignore("unused_private_class_variable")
 var _global_rotation_1:
 	get:
 		return global_rotation_degrees
 
+@warning_ignore("unused_private_class_variable")
 var _global_rotation_2:
 	get:
 		var global_rotation_2 = rotation_2
@@ -49,20 +52,60 @@ var _global_scale_w:
 			global_scale_w *= parent._global_scale_w
 
 		return global_scale_w
-		
+
+@warning_ignore("unused_private_class_variable")
 var _global_scale:
 	get:
 		return Vector4(scale.x, scale.y, scale.z, _global_scale_w)
 
-@warning_ignore("unused_private_class_variable")
-var _global_transform = Transform4D.new() :
-	get:
-		_global_transform.position = _global_position
-		_global_transform.rotation_1 = _global_rotation_1
-		_global_transform.rotation_2 = _global_rotation_2
-		_global_transform.scale = _global_scale
+var _global_transform : Transform4D = Transform4D.new()
 
-		return _global_transform
+@onready var rng = RandomNumberGenerator.new()
+@onready var id = rng.randi()
+
+func _ready():
+	calc_global_transform()
+
+func _process(_delta):
+	if is_visible_in_tree() and (Engine.get_process_frames() + id) % 20 == 0:
+		pass
+	calc_global_transform()
+
+	var basis_n = Basis4D.new(
+		Vector4(1, 0, 0, 0),
+		Vector4(0, 2, 0, 0),
+		Vector4(0, 0, 3, 0),
+		Vector4(0, 0, 0, 4),
+	)
+	var basis_a = Basis4D.new(
+		Vector4(1, 0, 0, 0),
+		Vector4(0, 1, 0, 0),
+		Vector4(0, 0, 0, 1),
+		Vector4(0, 0, 1, 0),
+	)
+	var basis_b = Basis4D.new(
+		Vector4(1, 0, 0, 0),
+		Vector4(0, 0, 0, 1),
+		Vector4(0, 0, 1, 0),
+		Vector4(0, 1, 0, 0),
+	)
+	var results = basis_n.mul(basis_a).mul(basis_b)
+
+
+func calc_global_transform():
+	var _transform = Transform4D.new(
+		Vector4(position.x, position.y, position.z, position_w),
+		rotation_degrees,
+		rotation_2,
+		Vector4(scale.x, scale.y, scale.z, scale_w)
+	)
+	if parent_is_4d:
+		var p_transform = parent._global_transform
+		var p_basis = p_transform.basis
+		_transform.origin = p_basis.xform(_transform.origin) + p_transform.origin
+		_transform.basis = p_basis.mul(_transform.basis)
+
+	_global_transform = _transform
 
 
 func _get_property_list() -> Array[Dictionary]: ## Add hint to rotation and fix order
