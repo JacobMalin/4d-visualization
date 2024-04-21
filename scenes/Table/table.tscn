@@ -8,10 +8,10 @@
 [ext_resource type="Material" uid="uid://b2vfads0frtmh" path="res://scenes/Table/FlatLand/frustrum_material.tres" id="5_thvm2"]
 [ext_resource type="PackedScene" uid="uid://dwu36x1b0dkob" path="res://scenes/Table/Buttons/movement_button.tscn" id="6_age6n"]
 [ext_resource type="Material" uid="uid://ch2t0tumkro4v" path="res://scenes/Table/FlatLand/flat_land_material.tres" id="7_ndgbw"]
+[ext_resource type="PackedScene" uid="uid://djk85u1gops8n" path="res://scenes/Table/Buttons/tiny_reset_button.tscn" id="8_3y0t2"]
 [ext_resource type="PackedScene" uid="uid://bng8sm6xpefyl" path="res://scenes/Table/Buttons/hide_button.tscn" id="8_mb0g2"]
 [ext_resource type="Script" path="res://scenes/Table/3DObjects/triangle_3d.gd" id="10_avgx2"]
 [ext_resource type="PackedScene" uid="uid://driat2fkek0k4" path="res://scenes/Table/Buttons/disable_button.tscn" id="10_n0ncg"]
-[ext_resource type="PackedScene" uid="uid://djk85u1gops8n" path="res://scenes/Table/Buttons/reset_button.tscn" id="10_nrcww"]
 [ext_resource type="PackedScene" uid="uid://dphqhvwoot1w5" path="res://scenes/Table/Buttons/shift_button.tscn" id="11_oc4c7"]
 [ext_resource type="Script" path="res://scenes/Table/3DObjects/rect_3d.gd" id="12_sfa1a"]
 [ext_resource type="Script" path="res://scenes/Table/3DObjects/box_3d.gd" id="13_ouihp"]
@@ -109,7 +109,7 @@ table = NodePath("../..")
 tiny = NodePath("../../Tiny")
 reset_button = NodePath("../ResetButton")
 
-[node name="ResetButton" parent="Buttons" node_paths=PackedStringArray("tiny") instance=ExtResource("10_nrcww")]
+[node name="ResetButton" parent="Buttons" node_paths=PackedStringArray("tiny") instance=ExtResource("8_3y0t2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43, 0, 0.32)
 tiny = NodePath("../../Tiny")
 

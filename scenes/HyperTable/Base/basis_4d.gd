@@ -1,26 +1,46 @@
 class_name Basis4D
 
-var x : Vector4 = Vector4.ZERO
-var y : Vector4 = Vector4.ZERO
-var z : Vector4 = Vector4.ZERO
-var w : Vector4 = Vector4.ZERO
+var x : Vector4 :
+	get:
+		return rows[0]
+	set(_x):
+		rows[0] = _x
+var y : Vector4 :
+	get:
+		return rows[1]
+	set(_y):
+		rows[1] = _y
+var z : Vector4 :
+	get:
+		return rows[2]
+	set(_z):
+		rows[2] = _z
+var w : Vector4 :
+	get:
+		return rows[3]
+	set(_w):
+		rows[3] = _w
+
+var rows = [
+	Vector4.ZERO,
+	Vector4.ZERO,
+	Vector4.ZERO,
+	Vector4.ZERO,
+]
 
 func _init(p_x = Vector4(1, 0, 0, 0), p_y = Vector4(0, 1, 0, 0),
 		   p_z = Vector4(0, 0, 1, 0), p_w = Vector4(0, 0, 0, 1)):
-	x = p_x
-	y = p_y
-	z = p_z
-	w = p_w
+	rows = [ p_x, p_y, p_z, p_w ]
 
 static func newFromScaleAndRotation(scale, rot_1, rot_2):
 	return newFromScale(scale).mul(newFromRotation(rot_1, rot_2))
 
 static func newFromScale(scale):
 	return Basis4D.new(
-		Vector4(1, 0, 0, 0) * scale.x,
-		Vector4(0, 1, 0, 0) * scale.y,
-		Vector4(0, 0, 1, 0) * scale.z,
-		Vector4(0, 0, 0, 1) * scale.w,
+		Vector4(scale.x, 0, 0, 0),
+		Vector4(0, scale.y, 0, 0),
+		Vector4(0, 0, scale.z, 0),
+		Vector4(0, 0, 0, scale.w),
 	)
 
 static func newFromRotation(rot_1, rot_2):
@@ -120,37 +140,22 @@ static func newFromRotation(rot_1, rot_2):
 
 # Helper
 
+func tdotx(p_v):
+	return rows[0][0] * p_v[0] + rows[1][0] * p_v[1] + rows[2][0] * p_v[2] + rows[3][0] * p_v[3];
+func tdoty(p_v):
+	return rows[0][1] * p_v[0] + rows[1][1] * p_v[1] + rows[2][1] * p_v[2] + rows[3][1] * p_v[3];
+func tdotz(p_v):
+	return rows[0][2] * p_v[0] + rows[1][2] * p_v[1] + rows[2][2] * p_v[2] + rows[3][2] * p_v[3];
+func tdotw(p_v):
+	return rows[0][3] * p_v[0] + rows[1][3] * p_v[1] + rows[2][3] * p_v[2] + rows[3][3] * p_v[3];
+
 func mul(rhs):
-	var _basis = Basis4D.new()
-
-	for i in range(4):
-		for j in range(4):
-			_basis.set_cell(i, j, row(i).dot(rhs.col(j)))
-
-	return _basis
-
-func row(i):
-	if i == 0:   return x
-	elif i == 1: return y
-	elif i == 2: return z
-	elif i == 3: return w
-
-func a(i, j):
-	return row(i-1)[j-1]
-
-func col(j):
-	var _col = Vector4.ZERO
-
-	for i in range(4):
-		_col[i] = row(i)[j]
-
-	return _col
-
-func set_cell(i, j, value):
-	if i == 0:   x[j] = value
-	elif i == 1: y[j] = value
-	elif i == 2: z[j] = value
-	elif i == 3: w[j] = value
+	return Basis4D.new(
+		Vector4(rhs.tdotx(rows[0]), rhs.tdoty(rows[0]), rhs.tdotz(rows[0]), rhs.tdotw(rows[0])),
+		Vector4(rhs.tdotx(rows[1]), rhs.tdoty(rows[1]), rhs.tdotz(rows[1]), rhs.tdotw(rows[1])),
+		Vector4(rhs.tdotx(rows[2]), rhs.tdoty(rows[2]), rhs.tdotz(rows[2]), rhs.tdotw(rows[2])),
+		Vector4(rhs.tdotx(rows[3]), rhs.tdoty(rows[3]), rhs.tdotz(rows[3]), rhs.tdotw(rows[3])),
+	)
 
 static func cos_deg(theta):
 	return cos(deg_to_rad(theta))

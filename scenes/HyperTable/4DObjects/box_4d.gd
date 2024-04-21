@@ -89,3 +89,7 @@ func update_rects():
 
 	for rect in rects:
 		rect.id = id
+
+func update_visibility(vs):
+	for i in range(6):
+		rects[i].visible = vs[i]

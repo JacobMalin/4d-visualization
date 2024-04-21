@@ -17,8 +17,6 @@ extends Node4D
 	Box4D.new(),
 	Box4D.new(),
 	Box4D.new(),
-	Box4D.new(),
-	Box4D.new(),
 ]
 
 func _ready():
@@ -33,37 +31,36 @@ func update_boxes():
 	# Box 0 - +w
 	boxes[0].size = Vector3(size.x, size.y, size.z)
 	boxes[0].center_offset.w = size.w / 2
+	boxes[0].update_visibility([true, true, true, true, true, true])
 	# Box 1 - -w
 	boxes[1].size = Vector3(size.x, size.y, size.z)
 	boxes[1].center_offset.w = size.w / 2
 	boxes[1].rotation_2.x = 180
+	boxes[1].update_visibility([true, true, true, true, true, true])
 
 	# Box 2 - +z
 	boxes[2].size = Vector3(size.x, size.y, size.w)
 	boxes[2].center_offset.w = size.z / 2
 	boxes[2].rotation_2.z = 90
+	boxes[2].update_visibility([false, false, true, true, true, true])
 	# Box 3 - -z
 	boxes[3].size = Vector3(size.x, size.y, size.w)
 	boxes[3].center_offset.w = size.z / 2
 	boxes[3].rotation_2.z = 270
+	boxes[3].update_visibility([false, false, true, true, true, true])
 
 	# Box 4 - +x
 	boxes[4].size = Vector3(size.w, size.y, size.z)
 	boxes[4].center_offset.w = size.x / 2
 	boxes[4].rotation_2.x = 90
+	boxes[4].update_visibility([false, false, false, false, true, true])
 	# Box 5 - -x
 	boxes[5].size = Vector3(size.w, size.y, size.z)
 	boxes[5].center_offset.w = size.x / 2
 	boxes[5].rotation_2.x = 270
+	boxes[5].update_visibility([false, false, false, false, true, true])
 
-	# Box 6 - +y
-	boxes[6].size = Vector3(size.x, size.w, size.z)
-	boxes[6].center_offset.w = size.y / 2
-	boxes[6].rotation_2.y = 90
-	# Box 7 - -y
-	boxes[7].size = Vector3(size.x, size.w, size.z)
-	boxes[7].center_offset.w = size.y / 2
-	boxes[7].rotation_2.y = 270
+	# Boxes 6 and 7 are omitted due to repeated faces
 
 	scale = Vector3.ONE
 	scale_w = 1.0

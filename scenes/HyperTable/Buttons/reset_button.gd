@@ -1,20 +1,15 @@
 class_name ResetButton
 extends Area3D
 
-@export var tiny: Tiny
+@export var resettable: Node3D
 
 @export var lock = false
-@export var enabled = false :
+@export var enabled = true :
 	set(value):
 		enabled = value
 		visible = value
 
 @onready var anim: AnimationPlayer = $Anim
-
-## Lifecycle
-
-func _ready():
-	visible = false
 
 ## Events
 
@@ -26,4 +21,4 @@ func _on_area_entered(_area: Area3D):
 ## Helpers
 
 func reset():
-	tiny.reset()
+	resettable.reset()

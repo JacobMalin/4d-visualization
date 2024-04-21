@@ -1,15 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwfmn7vqp1r2j"]
+[gd_scene load_steps=23 format=3 uid="uid://cwfmn7vqp1r2j"]
 
+[ext_resource type="Script" path="res://scenes/HyperTable/hyper_table.gd" id="1_0gubw"]
 [ext_resource type="Material" uid="uid://dhjl7tuucybyj" path="res://scenes/HyperTable/grass.tres" id="1_kaqb4"]
-[ext_resource type="Script" path="res://scenes/HyperTable/4DObjects/box_4d.gd" id="2_otxi7"]
+[ext_resource type="Script" path="res://scenes/HyperTable/Rotate4D.gd" id="2_nvl0k"]
+[ext_resource type="Script" path="res://scenes/HyperTable/4DObjects/hyper_box_4d.gd" id="3_y1xlb"]
+[ext_resource type="Material" uid="uid://dhw8itc182gu8" path="res://scenes/Table/table_material.tres" id="4_arnte"]
 [ext_resource type="Script" path="res://scenes/HyperTable/Base/node_4d.gd" id="5_7nl70"]
+[ext_resource type="PackedScene" uid="uid://bttodm0n6ygh8" path="res://scenes/HyperTable/Buttons/pause_button.tscn" id="7_2u7jy"]
+[ext_resource type="PackedScene" uid="uid://hoy834pm1kub" path="res://scenes/HyperTable/Buttons/reset_button.tscn" id="7_6dghh"]
+[ext_resource type="PackedScene" uid="uid://c65hpb1wiub0m" path="res://scenes/HyperTable/Buttons/radio_button.tscn" id="8_8l1xb"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hjah1"]
 size = Vector2(100, 100)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_uvf7b"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_2684l"]
+material = ExtResource("4_arnte")
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_86xp0"]
+material = ExtResource("4_arnte")
+size = Vector3(0.865, 0.1, 0.13)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tkd3"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pirs6"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v65k"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u3pi6"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_5v65k")
+size = Vector3(0.075, 0.005, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oc6mq"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_5v65k")
+size = Vector3(0.005, 0.075, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2hmjh"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_5v65k")
+size = Vector3(0.005, 0.005, 0.075)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rxeeh"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_5v65k")
+size = Vector3(0.005, 0.075, 0.075)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lp5bt"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_5v65k")
+size = Vector3(0.075, 0.005, 0.075)
+
+[sub_resource type="BoxMesh" id="BoxMesh_55iud"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_5v65k")
+size = Vector3(0.075, 0.075, 0.005)
+
 [node name="HyperTable" type="StaticBody3D"]
+script = ExtResource("1_0gubw")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 material_override = ExtResource("1_kaqb4")
@@ -19,16 +73,85 @@ skeleton = NodePath("../..")
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("WorldBoundaryShape3D_uvf7b")
 
-[node name="Node4D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+[node name="Stand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 3.5)
 script = ExtResource("5_7nl70")
-position_w = 0.0
-rotation_2 = Vector3(69.7, 0, 0)
-scale_w = 1.0
-
-[node name="Box4D" type="Node3D" parent="Node4D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0588311, 1.11797, 0)
-script = ExtResource("2_otxi7")
 position_w = 0.0
 rotation_2 = Vector3(0, 0, 0)
 scale_w = 1.0
+
+[node name="Mesh" type="MeshInstance3D" parent="Stand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("BoxMesh_2684l")
+skeleton = NodePath("../../..")
+
+[node name="Rotate4D" type="Node3D" parent="Stand" node_paths=PackedStringArray("table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_nvl0k")
+table = NodePath("../..")
+pause = null
+position_w = 0.0
+rotation_2 = Vector3(0, 0, 0)
+scale_w = 1.0
+
+[node name="HyperBox4D" type="Node3D" parent="Stand/Rotate4D"]
+script = ExtResource("3_y1xlb")
+position_w = 0.0
+rotation_2 = Vector3(0, 0, 0)
+scale_w = 1.0
+
+[node name="Control Panel" type="Node3D" parent="."]
+transform = Transform3D(0.576746, 0, -0.816924, 0, 1, 0, 0.816924, 0, 0.576746, -0.948615, 1.096, 2.55268)
+
+[node name="Mesh" type="MeshInstance3D" parent="Control Panel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("BoxMesh_86xp0")
+skeleton = NodePath("../../..")
+
+[node name="PauseButton" parent="Control Panel" node_paths=PackedStringArray("pausable") instance=ExtResource("7_2u7jy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.355, 0, 2.38419e-07)
+pausable = NodePath("../../Stand/Rotate4D")
+material_show = SubResource("StandardMaterial3D_4tkd3")
+material_hide = SubResource("StandardMaterial3D_pirs6")
+
+[node name="ResetButton" parent="Control Panel" node_paths=PackedStringArray("resettable") instance=ExtResource("7_6dghh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.244, 0, 0)
+resettable = NodePath("../../Stand/Rotate4D")
+
+[node name="Radios" type="Node3D" parent="Control Panel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.097, 0.06, 0)
+
+[node name="RadioButton" parent="Control Panel/Radios" node_paths=PackedStringArray("rotatable") instance=ExtResource("8_8l1xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+rotatable = NodePath("../../../Stand/Rotate4D")
+_mesh = SubResource("BoxMesh_u3pi6")
+
+[node name="RadioButton2" parent="Control Panel/Radios" node_paths=PackedStringArray("rotatable") instance=ExtResource("8_8l1xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0)
+rotatable = NodePath("../../../Stand/Rotate4D")
+_mesh = SubResource("BoxMesh_oc6mq")
+rotation_plane = 1
+
+[node name="RadioButton3" parent="Control Panel/Radios" node_paths=PackedStringArray("rotatable") instance=ExtResource("8_8l1xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
+rotatable = NodePath("../../../Stand/Rotate4D")
+_mesh = SubResource("BoxMesh_2hmjh")
+rotation_plane = 2
+
+[node name="RadioButton4" parent="Control Panel/Radios" node_paths=PackedStringArray("rotatable") instance=ExtResource("8_8l1xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, 0)
+rotatable = NodePath("../../../Stand/Rotate4D")
+_mesh = SubResource("BoxMesh_rxeeh")
+rotation_plane = 3
+
+[node name="RadioButton5" parent="Control Panel/Radios" node_paths=PackedStringArray("rotatable") instance=ExtResource("8_8l1xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0)
+rotatable = NodePath("../../../Stand/Rotate4D")
+_mesh = SubResource("BoxMesh_lp5bt")
+rotation_plane = 4
+
+[node name="RadioButton6" parent="Control Panel/Radios" node_paths=PackedStringArray("rotatable") instance=ExtResource("8_8l1xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
+rotatable = NodePath("../../../Stand/Rotate4D")
+_mesh = SubResource("BoxMesh_55iud")
+rotation_plane = 5

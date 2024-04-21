@@ -40,4 +40,6 @@ left_controller = NodePath("../XRRig/LeftController")
 right_controller = NodePath("../XRRig/RightController")
 movement_controller = NodePath("../XRRig/MovementController")
 
-[node name="HyperTable" parent="." instance=ExtResource("3_u8m4h")]
+[node name="HyperTable" parent="." node_paths=PackedStringArray("right_controller", "main_camera") instance=ExtResource("3_u8m4h")]
+right_controller = NodePath("../XRRig/RightController")
+main_camera = NodePath("../XRRig/XRCamera3D/MainCamera4D")

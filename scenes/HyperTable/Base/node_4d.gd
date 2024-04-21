@@ -9,6 +9,7 @@ var scale_w = 1.0
 
 @onready var parent = get_parent()
 @onready var parent_is_4d = parent and parent is Node4D
+@onready var recursive_depth = 0
 
 var _global_position_w:
 	get:
@@ -63,33 +64,20 @@ var _global_transform : Transform4D = Transform4D.new()
 @onready var rng = RandomNumberGenerator.new()
 @onready var id = rng.randi()
 
+func calc_recursive_depth():
+	recursive_depth = parent.recursive_depth + 1
+
 func _ready():
+	if parent_is_4d:
+		calc_recursive_depth.call_deferred()
+
 	calc_global_transform()
 
 func _process(_delta):
 	if is_visible_in_tree() and (Engine.get_process_frames() + id) % 20 == 0:
 		pass
-	calc_global_transform()
-
-	var basis_n = Basis4D.new(
-		Vector4(1, 0, 0, 0),
-		Vector4(0, 2, 0, 0),
-		Vector4(0, 0, 3, 0),
-		Vector4(0, 0, 0, 4),
-	)
-	var basis_a = Basis4D.new(
-		Vector4(1, 0, 0, 0),
-		Vector4(0, 1, 0, 0),
-		Vector4(0, 0, 0, 1),
-		Vector4(0, 0, 1, 0),
-	)
-	var basis_b = Basis4D.new(
-		Vector4(1, 0, 0, 0),
-		Vector4(0, 0, 0, 1),
-		Vector4(0, 0, 1, 0),
-		Vector4(0, 1, 0, 0),
-	)
-	var results = basis_n.mul(basis_a).mul(basis_b)
+	if is_visible_in_tree():
+		calc_global_transform()
 
 
 func calc_global_transform():
