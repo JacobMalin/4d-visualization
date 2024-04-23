@@ -11,7 +11,7 @@ extends Node4D
 		center_offset = co
 		update_rects.call_deferred()
 
-# @export var colors: Color
+@export var color: Color = Color.BLACK
 
 @onready var rects = [
 	Rect4D.new(),
@@ -89,6 +89,7 @@ func update_rects():
 
 	for rect in rects:
 		rect.id = id
+		rect.color = color
 
 func update_visibility(vs):
 	for i in range(6):

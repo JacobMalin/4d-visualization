@@ -11,12 +11,7 @@ extends Node4D
 		center_offset = co
 		update_triangles.call_deferred()
 
-# @export var colors = [
-# 	Color(),
-# 	Color(),
-# 	Color(),
-# 	Color(),
-# ]
+@export var color: Color = Color.BLACK
 
 @onready var triangles = [
 	Triangle4D.new(),
@@ -42,13 +37,13 @@ func update_triangles():
 	# Triangle0 - top right
 	for i in range(3):
 		triangles[0].vertices[i] = vertices[i]
-		# triangles[0].colors[i] = colors[i]
+		triangles[0].color = color
 
 	# Triangle1 - bottom left
 	for i in range(3):
 		var j = (i + 2) % 4
 		triangles[1].vertices[i] = vertices[j]
-		# triangles[1].colors[i] = colors[j]
+		triangles[1].color = color
 
 	scale = Vector3.ONE
 	scale_w = 1.0

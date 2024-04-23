@@ -5,10 +5,9 @@ extends Node4D
 @export var size : Vector4 = Vector4.ONE : 
 	set(s):
 		size = s
-		update_boxes()
-		
+		update_boxes.call_deferred()
 
-# @export var colors: Color
+@export var color: Color = Color.BLACK
 
 @onready var boxes = [
 	Box4D.new(),
@@ -65,5 +64,5 @@ func update_boxes():
 	scale = Vector3.ONE
 	scale_w = 1.0
 
-	# for box in boxes:
-	# 	box.id = id
+	for box in boxes:
+		box.color = color

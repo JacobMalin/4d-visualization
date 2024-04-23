@@ -8,11 +8,7 @@ extends Node4D
 	Vector4(1, 1, 0, 0),
 ]
 
-# @export var colors = [
-# 	Color(),
-# 	Color(),
-# 	Color(),
-# ]
+@export var color: Color = Color.BLACK
 
 @onready var mesh_3d = MeshInstance3D.new()
 @onready var _mesh_3d = ImmediateMesh.new()
@@ -63,6 +59,8 @@ func _process(_delta):
 	mesh_3d.set_instance_shader_parameter("vertex_0", vertices[0])
 	mesh_3d.set_instance_shader_parameter("vertex_1", vertices[1])
 	mesh_3d.set_instance_shader_parameter("vertex_2", vertices[2])
+
+	mesh_3d.set_instance_shader_parameter("color", color)
 
 	var gtransform = _global_transform
 	var gtransform_basis = gtransform.basis

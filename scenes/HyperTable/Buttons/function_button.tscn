@@ -1,18 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://driat2fkek0k4"]
+[gd_scene load_steps=9 format=3 uid="uid://dqgvkyj5sqfie"]
 
-[ext_resource type="Script" path="res://scenes/Table/Buttons/disable_button.gd" id="1_tyfvt"]
+[ext_resource type="Script" path="res://scenes/HyperTable/Buttons/function_button.gd" id="1_at02g"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jfow0"]
-size = Vector3(0.075, 0.05, 0.075)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ventc"]
+albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1oev"]
-resource_local_to_scene = true
-albedo_color = Color(1, 0.0862745, 0.0235294, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqs20"]
+albedo_color = Color(0, 1, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_8rih5"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_x1oev")
-size = Vector3(0.075, 0.05, 0.075)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0nlsu"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ngsc"]
+material = SubResource("StandardMaterial3D_0nlsu")
+size = Vector3(0.075, 0.075, 0.075)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7p6im"]
+size = Vector3(0.075, 0.075, 0.075)
 
 [sub_resource type="Animation" id="Animation_yh1c4"]
 resource_name = "push"
@@ -42,23 +46,18 @@ _data = {
 "push": SubResource("Animation_yh1c4")
 }
 
-[node name="DisableButton" type="Area3D"]
+[node name="FunctionButton" type="Area3D"]
 collision_layer = 0
 collision_mask = 131072
-script = ExtResource("1_tyfvt")
-
-[node name="TinyStatic" type="StaticBody3D" parent="."]
-collision_layer = 256
-collision_mask = 0
-
-[node name="Collision" type="CollisionShape3D" parent="TinyStatic"]
-shape = SubResource("BoxShape3D_jfow0")
+script = ExtResource("1_at02g")
+material_false = SubResource("StandardMaterial3D_ventc")
+material_true = SubResource("StandardMaterial3D_aqs20")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_8rih5")
+mesh = SubResource("BoxMesh_7ngsc")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_jfow0")
+shape = SubResource("BoxShape3D_7p6im")
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {

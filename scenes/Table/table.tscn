@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://poq05hssxap0"]
+[gd_scene load_steps=37 format=3 uid="uid://poq05hssxap0"]
 
 [ext_resource type="Script" path="res://scenes/Table/table.gd" id="1_gl6xo"]
 [ext_resource type="PackedScene" uid="uid://bcp688sph47rl" path="res://scenes/Table/FlatLand/Tiny/tiny.tscn" id="2_7f51b"]
@@ -64,6 +64,50 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_xcr1i")
 size = Vector2(0.075, 0.075)
 center_offset = Vector3(0, 0.025, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_26eol"]
+size = Vector3(0.075, 0.05, 0.075)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qi78c"]
+height = 0.05
+radius = 0.038
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7a1oc"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_udcpo"]
+material = SubResource("StandardMaterial3D_7a1oc")
+top_radius = 0.038
+bottom_radius = 0.038
+height = 0.001
+
+[sub_resource type="Animation" id="Animation_l7kfi"]
+resource_name = "push"
+length = 0.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.025, 0, 0.25, 1, 0, 0.005, 0, 0.5, 1, 0, 0.025, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:lock")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0l8kk"]
+_data = {
+"push": SubResource("Animation_l7kfi")
+}
 
 [node name="Table" type="StaticBody3D"]
 script = ExtResource("1_gl6xo")
@@ -147,7 +191,6 @@ target_path = NodePath("/root/FlatReference")
 _name = &"show_3d"
 material_show = SubResource("StandardMaterial3D_fjbx6")
 material_hide = SubResource("StandardMaterial3D_pxj7k")
-lock = false
 
 [node name="2DDisableButton" parent="Buttons" instance=ExtResource("10_n0ncg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.111553, 0, 0.43)
@@ -155,74 +198,68 @@ target_path = NodePath("/root/FlatReference")
 _name = &"show_2d"
 material_show = SubResource("StandardMaterial3D_fjbx6")
 material_hide = SubResource("StandardMaterial3D_pxj7k")
-lock = false
 
 [node name="Mesh" parent="Buttons/2DDisableButton" index="1"]
 mesh = SubResource("PlaneMesh_uon5r")
 
+[node name="Collision" parent="Buttons/2DDisableButton" index="2"]
+shape = SubResource("BoxShape3D_26eol")
+
+[node name="2DRotateButton" parent="Buttons" instance=ExtResource("10_n0ncg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012, 0, 0.43)
+target_path = NodePath("/root/FlatReference")
+_name = &"do_rotate"
+material_show = SubResource("StandardMaterial3D_fjbx6")
+material_hide = SubResource("StandardMaterial3D_pxj7k")
+
+[node name="Collision" parent="Buttons/2DRotateButton/TinyStatic" index="0"]
+shape = SubResource("CylinderShape3D_qi78c")
+
+[node name="Mesh" parent="Buttons/2DRotateButton" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+mesh = SubResource("CylinderMesh_udcpo")
+
+[node name="Collision" parent="Buttons/2DRotateButton" index="2"]
+shape = SubResource("CylinderShape3D_qi78c")
+
+[node name="Anim" parent="Buttons/2DRotateButton" index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_0l8kk")
+}
+
 [node name="3DObjects" type="Node3D" parent="."]
 
-[node name="Triangle3D" type="Node3D" parent="3DObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0506616, -0.237553)
-script = ExtResource("10_avgx2")
-vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
-do_normals = null
-normals = [Vector3(0, 0.447214, 0.894427), Vector3(0, 0.447214, 0.894427), Vector3(0, 0.447214, 0.894427)]
-
-[node name="Triangle3D2" type="Node3D" parent="3DObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046157, 0.0458109, 0.297737)
-script = ExtResource("10_avgx2")
-vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
-do_normals = null
-normals = [Vector3(0, 0.447214, 0.894427), Vector3(0, 0.447214, 0.894427), Vector3(0, 0.447214, 0.894427)]
-
-[node name="Triangle3D3" type="Node3D" parent="3DObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0.133)
-script = ExtResource("10_avgx2")
-vertices = [Vector3(-0.05, 0, 0), Vector3(-0.05, 0, -0.05), Vector3(0.05, 0, 0)]
-do_normals = null
-normals = [Vector3(0, 1, 0), Vector3(0, 1, 0), Vector3(0, 1, 0)]
-
-[node name="Rect3D" type="Node3D" parent="3DObjects"]
-transform = Transform3D(0.999991, 0.00369985, 0.00186427, -0.00393318, 0.70643, 0.707772, 0.00130168, -0.707773, 0.706439, 0.208699, 0.0340535, -0.137044)
-script = ExtResource("12_sfa1a")
-size = Vector2(0.1, 0.1)
-
-[node name="Rect3D2" type="Node3D" parent="3DObjects"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0.263545, 0.0340535, 0.149002)
-script = ExtResource("12_sfa1a")
-size = Vector2(0.1, 0.1)
-
-[node name="Rect3D3" type="Node3D" parent="3DObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263747, 0.110774, 0.293565)
-script = ExtResource("12_sfa1a")
-size = Vector2(0.1, 0.1)
-
-[node name="Box3D" type="Node3D" parent="3DObjects"]
-transform = Transform3D(9.4171, -1.44483, 9.60452, 5.51641, 4.93294, -13.5829, -1.61572, 8.42106, 9.60452, -0.243548, 0.0843059, 0.200924)
-script = ExtResource("13_ouihp")
-size = Vector3(0.01, 0.01, 0.01)
-
-[node name="Box3D2" type="Node3D" parent="3DObjects"]
-transform = Transform3D(-0.427649, -0.0760276, -0.900742, -0.684289, -0.623868, 0.377541, -0.590647, 0.777823, 0.214772, -0.347061, 0.0808585, -0.0311846)
-script = ExtResource("13_ouihp")
-size = Vector3(0.1, 0.1, 0.1)
-
-[node name="Box3D3" type="Node3D" parent="3DObjects"]
-transform = Transform3D(-0.346937, 0.600871, -0.720131, -0.598954, 0.44891, 0.663124, 0.721726, 0.661388, 0.204151, -0.186733, 0.0736334, -0.252887)
-script = ExtResource("13_ouihp")
-size = Vector3(0.08, 0.04, 0.04)
-
 [node name="Torus3D" type="Node3D" parent="3DObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.117444, 0.0668161, -0.0869912)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.218577, 0.0668161, 0.23043)
+visible = false
 script = ExtResource("16_pmtoq")
 inner_radius = 0.023
 outer_radius = 0.053
 rings = 16
 ring_segments = 8
 
+[node name="Cube Creatioon" type="Node3D" parent="3DObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.386592, 0.0403234, -0.0607623)
+
+[node name="Triangle3D" type="Node3D" parent="3DObjects/Cube Creatioon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
+script = ExtResource("10_avgx2")
+vertices = [Vector3(-0.05, 0, 0.05), Vector3(-0.05, 0, -0.05), Vector3(0.05, 0, 0.05)]
+do_normals = null
+normals = [Vector3(0, 1, 0), Vector3(0, 1, 0), Vector3(0, 1, 0)]
+
+[node name="Rect3D" type="Node3D" parent="3DObjects/Cube Creatioon"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("12_sfa1a")
+size = Vector2(0.1, 0.1)
+
+[node name="Box3D" type="Node3D" parent="3DObjects/Cube Creatioon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
+script = ExtResource("13_ouihp")
+size = Vector3(0.1, 0.1, 0.1)
+
 [node name="Axes" type="Node3D" parent="3DObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43, 0.04, -0.43)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.458746, 0.0401444, -0.453239)
 
 [node name="Red" type="Node3D" parent="3DObjects/Axes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.033, 0, 0)
@@ -247,9 +284,85 @@ script = ExtResource("13_ouihp")
 size = Vector3(0.006, 0.006, 0.006)
 color = Color(0.392157, 0.392157, 0.392157, 1)
 
+[node name="Box3D4" type="Node3D" parent="3DObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.181916, 0.04, 0.237632)
+script = ExtResource("13_ouihp")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Axes" type="Node3D" parent="3DObjects/Box3D4"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+
+[node name="Red" type="Node3D" parent="3DObjects/Box3D4/Axes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.033, 0, 0)
+script = ExtResource("13_ouihp")
+size = Vector3(0.06, 0.006, 0.006)
+color = Color(0.784314, 0, 0, 1)
+
+[node name="Green" type="Node3D" parent="3DObjects/Box3D4/Axes"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.033, 0)
+script = ExtResource("13_ouihp")
+size = Vector3(0.06, 0.006, 0.006)
+color = Color(0, 0.784314, 0, 1)
+
+[node name="Blue" type="Node3D" parent="3DObjects/Box3D4/Axes"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.033)
+script = ExtResource("13_ouihp")
+size = Vector3(0.06, 0.006, 0.006)
+color = Color(0, 0, 0.784314, 1)
+
+[node name="Origin" type="Node3D" parent="3DObjects/Box3D4/Axes"]
+script = ExtResource("13_ouihp")
+size = Vector3(0.006, 0.006, 0.006)
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="Boxes" type="Node3D" parent="3DObjects"]
+
+[node name="Box3D" type="Node3D" parent="3DObjects/Boxes"]
+transform = Transform3D(9.4171, -1.44483, 9.60452, 5.51641, 4.93294, -13.5829, -1.61572, 8.42106, 9.60452, 0.220435, 0.0843059, -0.27441)
+script = ExtResource("13_ouihp")
+size = Vector3(0.01, 0.01, 0.01)
+
+[node name="Box3D2" type="Node3D" parent="3DObjects/Boxes"]
+transform = Transform3D(-0.427649, -0.0760276, -0.900742, -0.684289, -0.623868, 0.377541, -0.590647, 0.777823, 0.214772, -0.128732, 0.0808585, -0.29475)
+script = ExtResource("13_ouihp")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Box3D3" type="Node3D" parent="3DObjects/Boxes"]
+transform = Transform3D(-0.346937, 0.600871, -0.720131, -0.598954, 0.44891, 0.663124, 0.721726, 0.661388, 0.204151, 0.310612, 0.0736334, -0.0316856)
+script = ExtResource("13_ouihp")
+size = Vector3(0.08, 0.04, 0.04)
+
+[node name="Flats" type="Node3D" parent="3DObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0515884, 0, 0)
+
+[node name="Triangle3D" type="Node3D" parent="3DObjects/Flats"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.197126, 0.051, 0.283917)
+script = ExtResource("10_avgx2")
+vertices = [Vector3(-0.05, -0.05, 0), Vector3(-0.05, 0.05, -0.05), Vector3(0.05, -0.05, 0)]
+do_normals = null
+normals = [Vector3(0, 0.447214, 0.894427), Vector3(0, 0.447214, 0.894427), Vector3(0, 0.447214, 0.894427)]
+
+[node name="Triangle3D2" type="Node3D" parent="3DObjects/Flats"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.197465, 0.04, 0.150872)
+script = ExtResource("10_avgx2")
+vertices = [Vector3(-0.05, 0, 0), Vector3(-0.05, 0, -0.05), Vector3(0.05, 0, 0)]
+do_normals = null
+normals = [Vector3(0, 1, 0), Vector3(0, 1, 0), Vector3(0, 1, 0)]
+
+[node name="Rect3D2" type="Node3D" parent="3DObjects/Flats"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -9.97856e-05, 0.0340535, 0.271697)
+script = ExtResource("12_sfa1a")
+size = Vector2(0.1, 0.1)
+
+[node name="Rect3D3" type="Node3D" parent="3DObjects/Flats"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.111, 0.137)
+script = ExtResource("12_sfa1a")
+size = Vector2(0.1, 0.1)
+
 [node name="Box3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.765867, 0)
 visible = false
 script = ExtResource("13_ouihp")
 
 [editable path="Buttons/2DDisableButton"]
+[editable path="Buttons/2DRotateButton"]

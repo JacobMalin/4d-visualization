@@ -6,6 +6,8 @@ instance uniform vec4 vertex_0;
 instance uniform vec4 vertex_1;
 instance uniform vec4 vertex_2;
 
+instance uniform vec3 color;
+
 group_uniforms transform;
 instance uniform vec4 origin;
 instance uniform vec4 basis_x;
@@ -134,6 +136,6 @@ void fragment() {
 	alpha = 1.0 - clamp(dist / w_frustrum, 0, 1);
 	
 	ALPHA = alpha;
-	ALBEDO = vec3(0);
+	ALBEDO = color.xyz;
 	//if (point.w > 0.) ALBEDO = vec3(1,0,0);
 }

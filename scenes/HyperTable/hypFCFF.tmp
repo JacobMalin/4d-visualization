@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cwfmn7vqp1r2j"]
+[gd_scene load_steps=51 format=3 uid="uid://cwfmn7vqp1r2j"]
 
 [ext_resource type="Script" path="res://scenes/HyperTable/hyper_table.gd" id="1_0gubw"]
 [ext_resource type="Material" uid="uid://dhjl7tuucybyj" path="res://scenes/HyperTable/grass.tres" id="1_kaqb4"]
@@ -25,6 +25,16 @@ size = Vector2(100, 100)
 material = ExtResource("4_arnte")
 size = Vector3(1, 0.1, 1)
 
+[sub_resource type="Animation" id="Animation_bfaq6"]
+resource_name = "push_z"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rect4D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 0, 0, 0.5)
+
 [sub_resource type="Animation" id="Animation_hw652"]
 resource_name = "push_2"
 tracks/0/type = "value"
@@ -39,16 +49,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 0.5]
 }
-
-[sub_resource type="Animation" id="Animation_bfaq6"]
-resource_name = "push_z"
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Rect4D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 0, 0, 0.5)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yt2u0"]
 _data = {
@@ -155,57 +155,17 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_suoii"]
 size = Vector3(0.075, 0.075, 0.075)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxj3r"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jgvw"]
 transparency = 1
 albedo_color = Color(0, 1, 0, 0.498039)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f615a"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfgi0"]
 transparency = 1
 albedo_color = Color(1, 0, 0, 0.498039)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dxae3"]
 material = SubResource("StandardMaterial3D_0nlsu")
 size = Vector3(0.075, 0.075, 0.075)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jgvw"]
-cull_mode = 2
-albedo_color = Color(0, 1, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfgi0"]
-cull_mode = 2
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_w7nmj"]
-size = Vector2(0.075, 0.075)
-center_offset = Vector3(0, -0.038, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqau1"]
-albedo_color = Color(0, 0.784314, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_4oaeh"]
-material = SubResource("StandardMaterial3D_hqau1")
-size = Vector3(0.004, 0.036, 0.004)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hw6t"]
-albedo_color = Color(0.784314, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_bjx7i"]
-material = SubResource("StandardMaterial3D_0hw6t")
-size = Vector3(0.036, 0.004, 0.004)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utsb5"]
-albedo_color = Color(0, 0, 0.784314, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_2yin6"]
-material = SubResource("StandardMaterial3D_utsb5")
-size = Vector3(0.004, 0.004, 0.036)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k65rl"]
-albedo_color = Color(0.392157, 0.392157, 0.392157, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_3xa6n"]
-material = SubResource("StandardMaterial3D_k65rl")
-size = Vector3(0.004, 0.004, 0.004)
 
 [node name="HyperTable" type="StaticBody3D"]
 script = ExtResource("1_0gubw")
@@ -269,56 +229,6 @@ position_w = 0.0
 rotation_2 = Vector3(0, 0, 0)
 scale_w = 1.0
 
-[node name="Axes4D" type="Node3D" parent="Stand/Rotate4D"]
-visible = false
-script = ExtResource("5_7nl70")
-position_w = 0.0
-rotation_2 = Vector3(0, 0, 0)
-scale_w = 1.0
-
-[node name="Red" type="Node3D" parent="Stand/Rotate4D/Axes4D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264, 0, 0)
-script = ExtResource("3_y1xlb")
-size = Vector4(0.48, 0.048, 0.048, 0.048)
-color = Color(0.784314, 0, 0, 1)
-position_w = 0.0
-rotation_2 = Vector3(0, 0, 0)
-scale_w = 1.0
-
-[node name="Green" type="Node3D" parent="Stand/Rotate4D/Axes4D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.264, 0)
-script = ExtResource("3_y1xlb")
-size = Vector4(0.048, 0.48, 0.048, 0.048)
-color = Color(0, 0.784314, 0, 1)
-position_w = 0.0
-rotation_2 = Vector3(0, 0, 0)
-scale_w = 1.0
-
-[node name="Blue" type="Node3D" parent="Stand/Rotate4D/Axes4D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.264)
-script = ExtResource("3_y1xlb")
-size = Vector4(0.048, 0.048, 0.48, 0.048)
-color = Color(0, 0, 0.784314, 1)
-position_w = 0.0
-rotation_2 = Vector3(0, 0, 0)
-scale_w = 1.0
-
-[node name="Purple" type="Node3D" parent="Stand/Rotate4D/Axes4D"]
-script = ExtResource("3_y1xlb")
-size = Vector4(0.048, 0.048, 0.048, 0.48)
-color = Color(0.78, 0, 0.78, 1)
-position_w = 0.264
-rotation_2 = Vector3(0, 0, 0)
-scale_w = 1.0
-
-[node name="Origin" type="Node3D" parent="Stand/Rotate4D/Axes4D"]
-script = ExtResource("3_y1xlb")
-size = Vector4(0.048, 0.048, 0.048, 0.048)
-color = Color(0.392157, 0.392157, 0.392157, 1)
-position_w = 0.0
-rotation_2 = Vector3(0, 0, 0)
-scale_w = 1.0
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Stand/Rotate4D"]
 libraries = {
 "": SubResource("AnimationLibrary_yt2u0")
@@ -345,7 +255,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.244, 0, 0)
 resettable = NodePath("../../../Rotate4D")
 
 [node name="Radios" type="Node3D" parent="Stand/Control Panel/Rotate Panel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.097, 0.06, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.097, 0.05, 0)
 
 [node name="RadioButton" parent="Stand/Control Panel/Rotate Panel/Radios" node_paths=PackedStringArray("rotatable") instance=ExtResource("8_8l1xb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
@@ -391,7 +301,7 @@ mesh = SubResource("BoxMesh_86xp0")
 skeleton = NodePath("../../../../..")
 
 [node name="Push" type="Node3D" parent="Stand/Control Panel/Visibility Panel"]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.310132, 0.0599999, -2.38419e-07)
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.216, 0.05, 0)
 
 [node name="PushZButton" parent="Stand/Control Panel/Visibility Panel/Push" node_paths=PackedStringArray("target") instance=ExtResource("13_0pxy7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
@@ -409,73 +319,28 @@ material_false = SubResource("StandardMaterial3D_4kf2w")
 material_true = SubResource("StandardMaterial3D_ah5qn")
 _mesh = SubResource("BoxMesh_swrcy")
 
-[node name="Invis" type="Node3D" parent="Stand/Control Panel/Visibility Panel" node_paths=PackedStringArray("triangle", "square", "cube", "hypercube", "axes")]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -0.0420079, 0.0599999, -7.15256e-07)
+[node name="Invis" type="Node3D" parent="Stand/Control Panel/Visibility Panel" node_paths=PackedStringArray("triangle", "square", "cube", "hypercube")]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -0.172095, 0.05, 0)
 script = ExtResource("14_ne3nq")
 triangle = NodePath("TriangleInvisButton")
 square = NodePath("SquareInvisButton")
 cube = NodePath("CubeInvisButton")
 hypercube = NodePath("HyperCubeInvisButton")
-axes = NodePath("../AxesInvisButton")
 
-[node name="TriangleInvisButton" parent="Stand/Control Panel/Visibility Panel/Invis" node_paths=PackedStringArray("invisable") instance=ExtResource("13_2my8t")]
+[node name="TriangleInvisButton" parent="Stand/Control Panel/Visibility Panel/Invis" instance=ExtResource("13_2my8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0)
-invisable = NodePath("../../../../Rotate4D/Triangle4D")
 material_show = SubResource("StandardMaterial3D_6ta10")
 material_hide = SubResource("StandardMaterial3D_vkhxw")
 _mesh = SubResource("PrismMesh_2d07h")
 lock = null
-
-[node name="SquareInvisButton" parent="Stand/Control Panel/Visibility Panel/Invis" node_paths=PackedStringArray("invisable") instance=ExtResource("13_2my8t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
-invisable = NodePath("../../../../Rotate4D/Rect4D")
-material_show = SubResource("StandardMaterial3D_dbx2n")
-material_hide = SubResource("StandardMaterial3D_mwv6h")
-_mesh = SubResource("BoxMesh_arhdr")
-lock = null
-
-[node name="CubeInvisButton" parent="Stand/Control Panel/Visibility Panel/Invis" node_paths=PackedStringArray("invisable") instance=ExtResource("13_2my8t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, 0)
-invisable = NodePath("../../../../Rotate4D/Box4D")
-material_show = SubResource("StandardMaterial3D_cw2s0")
-material_hide = SubResource("StandardMaterial3D_8a3w1")
-_mesh = SubResource("BoxMesh_suoii")
-lock = null
-
-[node name="HyperCubeInvisButton" parent="Stand/Control Panel/Visibility Panel/Invis" node_paths=PackedStringArray("invisable") instance=ExtResource("13_2my8t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0)
-invisable = NodePath("../../../../Rotate4D/HyperBox4D")
-material_show = SubResource("StandardMaterial3D_yxj3r")
-material_hide = SubResource("StandardMaterial3D_f615a")
-_mesh = SubResource("BoxMesh_dxae3")
-lock = null
-
-[node name="AxesInvisButton" parent="Stand/Control Panel/Visibility Panel" node_paths=PackedStringArray("invisable") instance=ExtResource("13_2my8t")]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -0.344, 0.0599999, -2.38419e-07)
-invisable = NodePath("../../../Rotate4D/Axes4D")
-material_show = SubResource("StandardMaterial3D_7jgvw")
-material_hide = SubResource("StandardMaterial3D_vfgi0")
-_mesh = SubResource("PlaneMesh_w7nmj")
-
-[node name="Node3D" type="Node3D" parent="Stand/Control Panel/Visibility Panel/AxesInvisButton"]
-transform = Transform3D(0.576432, 0, -0.817145, 0, 1, 0, 0.817145, 0, 0.576432, 0, 0, 0)
-
-[node name="Green" type="MeshInstance3D" parent="Stand/Control Panel/Visibility Panel/AxesInvisButton/Node3D"]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0.02, 0)
-mesh = SubResource("BoxMesh_4oaeh")
-skeleton = NodePath("../..")
-
-[node name="Red" type="MeshInstance3D" parent="Stand/Control Panel/Visibility Panel/AxesInvisButton/Node3D"]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.02, 0, 0)
-mesh = SubResource("BoxMesh_bjx7i")
-skeleton = NodePath("../..")
-
-[node name="Blue" type="MeshInstance3D" parent="Stand/Control Panel/Visibility Panel/AxesInvisButton/Node3D"]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0.02)
-mesh = SubResource("BoxMesh_2yin6")
-skeleton = NodePath("../..")
-
-[node name="Origin" type="MeshInstance3D" parent="Stand/Control Panel/Visibility Panel/AxesInvisButton/Node3D"]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_3xa6n")
-skeleton = NodePath("../..")
+invisable = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":false,"visibility_parent":NodePath(""),"script":ExtResource("6_ifg10"),"vertices":[Vector4(0.5, 0.5, 0, 0), Vector4(-0.5, -0.5, 0, 0), Vector4(0.5, -0.5, 0, 0)],"mesh_3d":Object(MeshInstance3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":true,"visible":true,"visibility_parent":NodePath(""),"layers":1,"sorting_offset":0.0,"sorting_use_aabb_center":true,"material_override":Resource("res://materials/hyper_3d_material.tres"),"material_overlay":null,"transparency":0.0,"cast_shadow":1,"extra_cull_margin":100000.0,"custom_aabb":AABB(0, 0, 0, 0, 0, 0),"lod_bias":1.0,"ignore_occlusion_culling":false,"gi_mode":1,"gi_lightmap_scale":0,"visibility_range_begin":0.0,"visibility_range_begin_margin":0.0,"visibility_range_end":0.0,"visibility_range_end_margin":0.0,"visibility_range_fade_mode":0,"instance_shader_parameters/basis_w":Vector4(0, 0, 0, 1),"instance_shader_parameters/basis_x":Vector4(1, 0, 0, 0),"instance_shader_parameters/basis_y":Vector4(0, 1, 0, 0),"instance_shader_parameters/basis_z":Vector4(0, 0, 1, 0),"instance_shader_parameters/origin":Vector4(0, 0, 0, 0),"instance_shader_parameters/vertex_0":Vector4(0.5, 0.5, 0, 0),"instance_shader_parameters/vertex_1":Vector4(-0.5, -0.5, 0, 0),"instance_shader_parameters/vertex_2":Vector4(0.5, -0.5, 0, 0),"mesh":null,"skin":null,"skeleton":NodePath(".."),"surface_material_override/0":null,"script":null)
+,"_mesh_3d":null,"_mat_3d":Resource("res://materials/hyper_3d_material.tres"),"uvs":[Vector2(0, 1), Vector2(0, 0), Vector2(1, 1)],"position_w":0.0,"rotation_2":Vector3(0, 0, 0),"scale_w":1.0,"parent":Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":ExtResource("2_nvl0k"),"table":Object(StaticBody3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_ray_pickable":true,"input_capture_on_drag":false,"axis_lock_linear_x":false,"axis_lock_linear_y":false,"axis_lock_linear_z":false,"axis_lock_angular_x":false,"axis_lock_angular_y":false,"axis_lock_angular_z":false,"physics_material_override":null,"constant_linear_velocity":Vector3(0, 0, 0),"constant_angular_velocity":Vector3(0, 0, 0),"script":ExtResource("1_0gubw"),"right_controller":null,"main_camera":null)
+,"speed":10.0,"pause_action":"by_button","anim":Object(AnimationPlayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","active":true,"deterministic":false,"reset_on_save":true,"root_node":NodePath(".."),"root_motion_track":NodePath(""),"audio_max_polyphony":32,"callback_mode_process":1,"callback_mode_method":0,"libraries":{
+"": SubResource("AnimationLibrary_yt2u0")
+},"autoplay":"","playback_default_blend_time":0.0,"speed_scale":1.0,"movie_quit_on_finish":false,"blend_times":[],"script":null)
+,"rotation_plane":1,"pause":null,"right_controller":null,"main_camera":null,"position_w":0.0,"rotation_2":Vector3(45, 45, 45),"scale_w":1.0,"parent":Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 3.5),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":ExtResource("5_7nl70"),"position_w":0.0,"rotation_2":Vector3(0, 0, 0),"scale_w":1.0,"parent":Object(StaticBody3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_ray_pickable":true,"input_capture_on_drag":false,"axis_lock_linear_x":false,"axis_lock_linear_y":false,"axis_lock_linear_z":false,"axis_lock_angular_x":false,"axis_lock_angular_y":false,"axis_lock_angular_z":false,"physics_material_override":null,"constant_linear_velocity":Vector3(0, 0, 0),"constant_angular_velocity":Vector3(0, 0, 0),"script":ExtResource("1_0gubw"),"right_controller":null,"main_camera":null)
+,"parent_is_4d":false,"recursive_depth":0,"_global_position_w":0.0,"_global_position":Vector4(0, 0.1, 3.5, 0),"_global_rotation_1":Vector3(0, 0, 0),"_global_rotation_2":Vector3(0, 0, 0),"_global_scale_w":1.0,"_global_scale":Vector4(1, 1, 1, 1),"_global_transform":Object(RefCounted,"script":Resource("res://scenes/HyperTable/Base/transform_4d.gd"),"position":Vector4(0, 0.1, 3.5, 0),"rotation_1":Vector3(0, 0, 0),"rotation_2":Vector3(0, 0, 0),"scale":Vector4(1, 1, 1, 1),"basis_changed":false,"basis":Object(RefCounted,"script":Resource("res://scenes/HyperTable/Base/basis_4d.gd"),"x":Vector4(1, 0, 0, 0),"y":Vector4(0, 1, 0, 0),"z":Vector4(0, 0, 1, 0),"w":Vector4(0, 0, 0, 1),"rows":[Vector4(1, 0, 0, 0), Vector4(0, 1, 0, 0), Vector4(0, 0, 1, 0), Vector4(0, 0, 0, 1)])
+,"origin":Vector4(0, 0.1, 3.5, 0))
+,"rng":Object(RandomNumberGenerator,"seed":-7336216420628600640,"state":7331380734406837769,"script":null)
+,"id":1379467512,"position_w":0.0,"rotation_2":Vector3(0, 0, 0),"scale_w":1.0)
+,"parent_is_4d":true,"recursive_depth":0,"_global_position_w":0.0,"_global_position":Vector4(0, 1.1, 3.5, 0),"_global_rotation_1":Vector3(0, 0, 0),"_global_rotation_2":Vector3(45, 45, 45),"_global_scale_w":1.0,"_global_scale":Vector4(1, 1, 1, 1),"_global_transform":Object(RefCounted,"script":Resource("res:/

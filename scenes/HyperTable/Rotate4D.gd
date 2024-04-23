@@ -6,6 +6,8 @@ extends Node4D
 @export var speed : float = 10
 @export var pause_action : String = "by_button"
 
+@export var anim : AnimationPlayer
+
 enum RotationType { YZ, ZX, XY, XW, YW, ZW }
 @export var rotation_plane : RotationType : 
 	set(rp):
@@ -60,3 +62,15 @@ func play(do_play):
 func _on_right_controller_button_pressed(_name):
 	if main_camera.movement_enabled and _name == pause_action:
 		play(pause)
+
+func push_z(_on):
+	if _on:
+		anim.play("push_z")
+	else:
+		anim.play_backwards("push_z")
+
+func push_w(_on):
+	if _on:
+		anim.play("push_w")
+	else:
+		anim.play_backwards("push_w")

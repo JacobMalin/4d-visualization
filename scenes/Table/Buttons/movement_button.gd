@@ -3,7 +3,7 @@ extends Area3D
 
 @export var table : Table
 @export var tiny : Tiny
-@export var reset_button : ResetButton
+@export var reset_button : TinyResetButton
 
 @export var lock = false
 @export var exit_action = "menu_button"
