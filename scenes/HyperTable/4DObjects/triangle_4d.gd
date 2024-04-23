@@ -70,6 +70,3 @@ func _process(_delta):
 	mesh_3d.set_instance_shader_parameter("basis_y", gtransform_basis.y)
 	mesh_3d.set_instance_shader_parameter("basis_z", gtransform_basis.z)
 	mesh_3d.set_instance_shader_parameter("basis_w", gtransform_basis.w)
-
-	var gver = gtransform_basis.xform(vertices[1]) + gtransform.origin
-	# print(gver)
