@@ -6,6 +6,7 @@ extends Node4D
 
 @export var movement_enabled = true
 @export var right_controller : XRController3D
+@onready var function_pickup : XRToolsFunctionPickup = right_controller.get_node("FunctionPickup")
 
 var prev_mouse_pos
 
@@ -55,7 +56,7 @@ func _on_right_controller_button_pressed(_name):
 
 func is_mousepad():
 	if Engine.is_editor_hint(): return false
-	return right_controller.is_button_pressed(mousepad_action)
+	return right_controller.is_button_pressed(mousepad_action) and function_pickup.picked_up_object == null
 
 func mouse_diff():
 	if Engine.is_editor_hint(): return Vector3.ZERO

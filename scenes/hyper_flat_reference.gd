@@ -14,10 +14,9 @@ var camera_basis : Basis4D = Basis4D.new()
 
 @onready var shader_3d = preload ("res://materials/hyper_3d_material.tres")
 
-func _ready():
-	shader_3d.set_shader_parameter("w_frustrum", w_frustrum)
-
 func _process(_delta):
+	shader_3d.set_shader_parameter("w_frustrum", w_frustrum)
+	
 	shader_3d.set_shader_parameter("normal", space.normal)
 	shader_3d.set_shader_parameter("e", space.e)
 

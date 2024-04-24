@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cwfmn7vqp1r2j"]
+[gd_scene load_steps=63 format=3 uid="uid://cwfmn7vqp1r2j"]
 
 [ext_resource type="Script" path="res://scenes/HyperTable/hyper_table.gd" id="1_0gubw"]
 [ext_resource type="Material" uid="uid://dhjl7tuucybyj" path="res://scenes/HyperTable/grass.tres" id="1_kaqb4"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dqgvkyj5sqfie" path="res://scenes/HyperTable/Buttons/function_button.tscn" id="13_0pxy7"]
 [ext_resource type="PackedScene" uid="uid://exn6kmim7ic6" path="res://scenes/HyperTable/Buttons/invis_button.tscn" id="13_2my8t"]
 [ext_resource type="Script" path="res://scenes/HyperTable/InvisManager.gd" id="14_ne3nq"]
+[ext_resource type="PackedScene" uid="uid://gpjtb0sbkjwc" path="res://scenes/HyperTable/Buttons/slide.tscn" id="16_0u7hb"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hjah1"]
 size = Vector2(100, 100)
@@ -58,7 +59,7 @@ _data = {
 
 [sub_resource type="BoxMesh" id="BoxMesh_86xp0"]
 material = ExtResource("4_arnte")
-size = Vector3(0.865, 0.1, 0.13)
+size = Vector3(0.865, 0.05, 0.13)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tkd3"]
 albedo_color = Color(0, 1, 0, 1)
@@ -330,7 +331,7 @@ libraries = {
 transform = Transform3D(0.576746, 0, -0.816924, 0, 1, 0, 0.816924, 0, 0.576746, -0.949, 0.996, -0.947)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stand/Control Panel/Rotate Panel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
 mesh = SubResource("BoxMesh_86xp0")
 skeleton = NodePath("../../../../..")
 
@@ -386,7 +387,7 @@ rotation_plane = 5
 transform = Transform3D(0.576432, 0, 0.817145, 0, 1, 0, -0.817145, 0, 0.576432, 0.949, 0.996, -0.947)
 
 [node name="Mesh" type="MeshInstance3D" parent="Stand/Control Panel/Visibility Panel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
 mesh = SubResource("BoxMesh_86xp0")
 skeleton = NodePath("../../../../..")
 
@@ -479,3 +480,14 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_3xa6n")
 skeleton = NodePath("../..")
+
+[node name="Slide Panel" type="Node3D" parent="Stand/Control Panel"]
+transform = Transform3D(0.576746, 0, -0.816924, 0, 1, 0, 0.816924, 0, 0.576746, -1.07351, 1.08574, -0.859097)
+
+[node name="Mesh" type="MeshInstance3D" parent="Stand/Control Panel/Slide Panel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+mesh = SubResource("BoxMesh_86xp0")
+skeleton = NodePath("../../../../..")
+
+[node name="Slide" parent="Stand/Control Panel/Slide Panel" instance=ExtResource("16_0u7hb")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0599999, 0)

@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://gpjtb0sbkjwc"]
+
+[ext_resource type="Script" path="res://scenes/HyperTable/Buttons/slide.gd" id="1_e6wrv"]
+[ext_resource type="Script" path="res://scenes/HyperTable/Buttons/slide_ball.gd" id="2_avd3c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1l37"]
+albedo_color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_475e4"]
+material = SubResource("StandardMaterial3D_e1l37")
+top_radius = 0.003
+bottom_radius = 0.003
+height = 0.75
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f63wu"]
+albedo_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_utuga"]
+material = SubResource("StandardMaterial3D_f63wu")
+size = Vector3(0.01, 0.01, 0.01)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_glyc7"]
+radius = 0.03
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnw8v"]
+albedo_color = Color(0.137255, 0.231373, 0.521569, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_t532q"]
+material = SubResource("StandardMaterial3D_lnw8v")
+radius = 0.03
+height = 0.06
+
+[node name="Slide" type="Node3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("1_e6wrv")
+
+[node name="Bar" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_475e4")
+
+[node name="Min" type="MeshInstance3D" parent="Bar"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1.45115e-15, 1, 0, 0.374632, -2.38419e-07)
+mesh = SubResource("BoxMesh_utuga")
+skeleton = NodePath("../..")
+
+[node name="Max" type="MeshInstance3D" parent="Bar"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -2.90229e-15, 1, 0, -0.375, 0)
+mesh = SubResource("BoxMesh_utuga")
+skeleton = NodePath("../..")
+
+[node name="Ball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 0, 0)
+collision_layer = 4
+collision_mask = 196615
+can_sleep = false
+freeze = true
+freeze_mode = 1
+script = ExtResource("2_avd3c")
+ranged_grab_method = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+shape = SubResource("SphereShape3D_glyc7")
+
+[node name="Ball" type="MeshInstance3D" parent="Ball"]
+mesh = SubResource("SphereMesh_t532q")
+skeleton = NodePath("../..")

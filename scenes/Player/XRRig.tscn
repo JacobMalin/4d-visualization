@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4eci8600mqwv"]
+[gd_scene load_steps=15 format=3 uid="uid://b4eci8600mqwv"]
 
 [ext_resource type="Script" path="res://scenes/Player/main_camera_4d.gd" id="1_giyyv"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_hbs25"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="3_obqfv"]
 [ext_resource type="Script" path="res://scenes/Player/pointer.gd" id="4_0ni5g"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="5_yrcfb"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="6_4g7qt"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="6_muorr"]
 [ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="7_yw536"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="8_14dth"]
@@ -54,6 +55,9 @@ offset = Vector3(-0.03, -0.05, 0.15)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00381637, 0, -0.0022997)
 shape = SubResource("SphereShape3D_6hbr6")
 
+[node name="FunctionPickup" parent="LeftController" instance=ExtResource("6_4g7qt")]
+ranged_enable = false
+
 [node name="RightController" type="XRController3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
 tracker = &"right_hand"
@@ -80,6 +84,9 @@ offset = Vector3(0.03, -0.05, 0.15)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RightController/RightPointer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00381637, 0, -0.0022997)
 shape = SubResource("SphereShape3D_6hbr6")
+
+[node name="FunctionPickup" parent="RightController" instance=ExtResource("6_4g7qt")]
+ranged_enable = false
 
 [node name="PlayerBody" parent="." instance=ExtResource("8_14dth")]
 collision_mask = 255
