@@ -34,7 +34,8 @@ func _physics_process(delta):
 
 func do_rotate(delta):
 	var delta_speed = speed * delta
-	if not Engine.is_editor_hint() and !pause:
+	# if not Engine.is_editor_hint() and !pause:
+	if !pause:
 		match rotation_plane:
 			RotationType.YZ:
 				rotation_degrees.x += delta_speed

@@ -44,8 +44,10 @@ static func newFromScale(scale):
 	)
 
 static func newFromRotation(rot_1, rot_2):
-	# Rotation Order : zw,xw,yw,xy,yz,zx
+	# Rotation Order : zw,xw,yw,zx,yz,xy
 	# Rotation matrices taken from https://scholarworks.iu.edu/dspace/bitstream/2022/8477/1/Zhang_indiana_0093A_10088.pdf
+
+	### Original rotation matrices
 	# var Rxy = Basis4D.new(
 	# 	Vector4(cos_deg(rot_1.z), -sin_deg(rot_1.z), 0, 0),
 	# 	Vector4(sin_deg(rot_1.z), cos_deg(rot_1.z), 0, 0),
@@ -85,6 +87,7 @@ static func newFromRotation(rot_1, rot_2):
 
 	# return Rzw.mul(Rxw).mul(Ryw).mul(Rzx).mul(Ryz).mul(Rxy)
 
+	## Reduced operation rotation matrix
 	var sx = sin_deg(rot_2.x)
 	var sy = sin_deg(rot_2.y)
 	var sz = sin_deg(rot_2.z)
