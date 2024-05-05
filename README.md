@@ -4,10 +4,10 @@ By: Jacob Malin
 
 4D visualization in virtual reality.
 
-![](photos/cube.png)
-![](photos/cuboid.png)
-![](photos/hexagonal_prism.png)
-![](photos/rhombic_dodecahedron.png)
+![](photos/cube.png | width=100)
+![](photos/cuboid.png | width=100)
+![](photos/hexagonal_prism.png | width=100)
+![](photos/rhombic_dodecahedron.png | width=100)
 
 ## Run
 
