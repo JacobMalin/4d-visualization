@@ -1,8 +1,10 @@
 # Transparency-Based 4D Visualization in Virtual Reality
 
-Jacob Malin
+By: Jacob Malin
 
-Made for CSCI 8980: Current VR/AR Research
+4D visualization in virtual reality.
+
+!(photos/cube.png)
 
 ## Run
 
