@@ -4,7 +4,7 @@ By: Jacob Malin
 
 4D visualization in virtual reality.
 
-!(photos/cube.png)
+![](photos/cube.png)
 
 ## Run
 
